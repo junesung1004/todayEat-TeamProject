@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  padding: 30px 20px;
+  border-top: 1px solid #dedede;
+  background-color: rgba(23, 123, 44, 0.1);
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    li {
+      font-weight: bold;
+    }
+  }
+}

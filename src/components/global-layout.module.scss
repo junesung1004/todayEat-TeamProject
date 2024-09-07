@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  max-width: 360px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: rgb(237,76,0);
+
+  box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 29px 0px;
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex: 1;
+  }
+}

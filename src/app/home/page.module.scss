@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 250, 240);
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px 30px;
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 50px;
+    h1 {
+      letter-spacing: 0.3rem;
+      font-size: 2.3rem;
+      font-weight: bold;
+      line-height: 2.3rem;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.5rem;
+      letter-spacing: 0.2rem;
+    }
+  }
+  .imageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .imgWrap {
+      width: 250px;
+      height: 250px;
+      border: 1px solid black;
+      margin-bottom: 50px;
+      border-radius: 50%;
+      background-color: white;
+    }
+    .btn {
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 40px;
+      background-color: rgba(237, 76, 0, 0.6);
+      font-weight: 600;
+      letter-spacing: 0.1rem;
+      color: white;
+      transition: all 0.6s;
+      &:hover {
+        background-color: rgba(237, 76, 0, 1);
+      }
+    }
+  }
+}
