@@ -6,9 +6,9 @@ import styles from "./global-layout.module.scss";
 export default function GlobalLayout({ children }) {
   return (
     <div className={styles.container}>
-      {/* <Header /> */}
+      <Header />
       <div className={styles.main}>{children}</div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

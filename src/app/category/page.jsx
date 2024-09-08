@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import styles from "./page.module.scss";
-import CheckIcon from "@/components/CheckIcon";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -15,8 +14,11 @@ export default function Page() {
     cn: false,
     jp: false,
     us: false,
-    asia: false,
     tang: false,
+    diet: false,
+    asia: false,
+    meet: false,
+    night: false,
   });
 
   const [priceCheckedItems, setPriceCheckedItems] = useState({
@@ -66,6 +68,8 @@ export default function Page() {
         tang: checkedChange,
         diet: checkedChange,
         asia: checkedChange,
+        meet: checkedChange,
+        night: checkedChange,
       });
     } else {
       // 개별 아이템이 클릭되었을 때 상태 업데이트
@@ -182,6 +186,8 @@ export default function Page() {
                 { id: "tang", label: "찜, 탕, 찌개" },
                 { id: "diet", label: "다이어트식" },
                 { id: "asia", label: "아시안" },
+                { id: "meet", label: "고기, 구이" },
+                { id: "night", label: "야식" },
               ].map((item) => (
                 <div
                   key={item.id}

@@ -1,5 +1,25 @@
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 30px;
+  .kakao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fee502;
+  }
+  .google {
+    width: 305px;
+    height: 33px;
+    border-radius: 4px;
+    background-color: white;
+  }
+  .github {
+    width: 305px;
+    height: 33px;
+    border-radius: 4px;
+    background-color: white;
+  }
 }
