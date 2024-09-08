@@ -11,11 +11,11 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 
-import img1 from "../../public/images/1.jpg";
-import img2 from "../../public/images/2.jpg";
-import img3 from "../../public/images/3.jpg";
-import img4 from "../../public/images/4.jpg";
-import img5 from "../../public/images/5.jpg";
+// import img1 from "../../public/images/1.jpg";
+// import img2 from "../../public/images/2.jpg";
+// import img3 from "../../public/images/3.jpg";
+// import img4 from "../../public/images/4.jpg";
+// import img5 from "../../public/images/5.jpg";
 
 export default function Card() {
   return (
@@ -30,21 +30,11 @@ export default function Card() {
       scrollbar={{ draggable: true }}
       pagination={{ clickable: true }}
     >
-      <SwiperSlide className={styles["swiper-slide"]}>
-        <Image src={img1} alt="이미지 슬라이드 1" priority width={320} height={400} />
-      </SwiperSlide>
-      <SwiperSlide className={styles["swiper-slide"]}>
-        <Image src={img2} alt="이미지 슬라이드 2" priority width={320} height={400} />
-      </SwiperSlide>
-      <SwiperSlide className={styles["swiper-slide"]}>
-        <Image src={img3} alt="이미지 슬라이드 3" priority width={320} height={400} />
-      </SwiperSlide>
-      <SwiperSlide className={styles["swiper-slide"]}>
-        <Image src={img4} alt="이미지 슬라이드 4" priority width={320} height={400} />
-      </SwiperSlide>
-      <SwiperSlide className={styles["swiper-slide"]}>
-        <Image src={img5} alt="이미지 슬라이드 5" priority width={320} height={400} />
-      </SwiperSlide>
+      <SwiperSlide className={styles["swiper-slide"]}>{/* <Image src={img1} alt="이미지 슬라이드 1" priority width={320} height={400} /> */}1</SwiperSlide>
+      <SwiperSlide className={styles["swiper-slide"]}>{/* <Image src={img2} alt="이미지 슬라이드 2" priority width={320} height={400} /> */}2</SwiperSlide>
+      <SwiperSlide className={styles["swiper-slide"]}>{/* <Image src={img3} alt="이미지 슬라이드 3" priority width={320} height={400} /> */}3</SwiperSlide>
+      <SwiperSlide className={styles["swiper-slide"]}>{/* <Image src={img4} alt="이미지 슬라이드 4" priority width={320} height={400} /> */}4</SwiperSlide>
+      <SwiperSlide className={styles["swiper-slide"]}>{/* <Image src={img5} alt="이미지 슬라이드 5" priority width={320} height={400} /> */}5</SwiperSlide>
     </Swiper>
   );
 }
