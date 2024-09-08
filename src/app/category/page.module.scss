@@ -39,13 +39,12 @@
           display: flex;
           flex-wrap: wrap;
           gap: 10px;
-          .iconBox {
+          .itemBox {
             cursor: pointer;
             background-color: rgba(246, 247, 247, 0.4);
             opacity: 0.7;
             border: 1px solid #dedede;
             display: flex;
-            min-width: 70px;
             padding: 7px 10px;
             border-radius: 35px;
             transition: all 0.6s;
@@ -70,13 +69,12 @@
           display: flex;
           flex-wrap: wrap;
           gap: 10px;
-          .iconBox {
+          .itemBox {
             cursor: pointer;
             background-color: rgba(246, 247, 247, 0.7);
             opacity: 0.7;
             border: 1px solid #dedede;
             display: flex;
-            min-width: 70px;
             padding: 7px 10px;
             border-radius: 35px;
             transition: all 0.6s;

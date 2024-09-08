@@ -11,7 +11,6 @@ export default function Page() {
   // 각 아이템 박스의 체크 상태를 관리하는 state
   const [checkedItems, setCheckedItems] = useState({
     all: false,
-    alone: false,
     kr: false,
     cn: false,
     jp: false,
@@ -34,7 +33,22 @@ export default function Page() {
     if (notAllow) {
       return;
     } else {
-      router.push(`/category/1`);
+      //선택된 첫번째 카테고리 필터
+      const selectedCategories = Object.keys(checkedItems)
+        .filter((key) => checkedItems[key] && key !== "all")
+        .join(",");
+
+      //선택된 두번째 가격 카테고리 필터
+      const selectedPriceCatogories = Object.keys(priceCheckedItems)
+        .filter((key) => priceCheckedItems[key] && key !== "priceAll")
+        .join(",");
+
+      // 위 2개의 카테고리를 선택한 쿼리 문자열 생성 코드
+      const queryString = new URLSearchParams({
+        categories: selectedCategories,
+        price: selectedPriceCatogories,
+      }).toString();
+      router.push(`/category/${queryString}`);
     }
   };
 
@@ -45,13 +59,13 @@ export default function Page() {
       const checkedChange = !checkedItems.all; //checkedItems의 변수들을 모두 선택해서 반전시켜준다.
       setCheckedItems({
         all: checkedChange,
-        alone: checkedChange,
         kr: checkedChange,
         cn: checkedChange,
         jp: checkedChange,
         us: checkedChange,
-        asia: checkedChange,
         tang: checkedChange,
+        diet: checkedChange,
+        asia: checkedChange,
       });
     } else {
       // 개별 아이템이 클릭되었을 때 상태 업데이트
@@ -161,17 +175,17 @@ export default function Page() {
             <div className={styles.categoryWrap}>
               {[
                 { id: "all", label: "전체" },
-                { id: "alone", label: "1인분" },
                 { id: "kr", label: "한식" },
                 { id: "cn", label: "중식" },
                 { id: "jp", label: "일식" },
                 { id: "us", label: "양식" },
-                { id: "asia", label: "아시안" },
                 { id: "tang", label: "찜, 탕, 찌개" },
+                { id: "diet", label: "다이어트식" },
+                { id: "asia", label: "아시안" },
               ].map((item) => (
                 <div
                   key={item.id}
-                  className={styles.iconBox}
+                  className={styles.itemBox}
                   id={item.id}
                   onClick={() => clickCheckedEvent(item.id)}
                   style={{
@@ -179,7 +193,6 @@ export default function Page() {
                     color: checkedItems[item.id] ? "white" : "inherit",
                   }}
                 >
-                  <CheckIcon />
                   <p>{item.label}</p>
                 </div>
               ))}
@@ -197,7 +210,7 @@ export default function Page() {
               ].map((item) => (
                 <div
                   key={item.id}
-                  className={styles.iconBox}
+                  className={styles.itemBox}
                   id={item.id}
                   onClick={() => clickCheckedPriceEvent(item.id)}
                   style={{
@@ -205,7 +218,6 @@ export default function Page() {
                     color: priceCheckedItems[item.id] ? "white" : "inherit",
                   }}
                 >
-                  <CheckIcon />
                   <p>{item.label}</p>
                 </div>
               ))}
