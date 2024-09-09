@@ -13,7 +13,7 @@ export default function GlobalLayout({ children }) {
   const hideFooter = pathname === "/" || pathname === "/category" || pathname === "/start";
   return (
     <div className={styles.container}>
-      {!hideHeader && <Header className={styles.header} />}
+      {/* {!hideHeader && <Header className={styles.header} />} */}
       <div className={styles.main}>{children}</div>
       {!hideFooter && <Footer className={styles.footer} />}
     </div>

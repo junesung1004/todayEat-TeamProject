@@ -12,6 +12,7 @@ export default function Page() {
   const [checkedItems, setCheckedItems] = useState({
     all: false,
     kr: false,
+    streetfood: false,
     cn: false,
     jp: false,
     us: false,
@@ -63,6 +64,7 @@ export default function Page() {
       setCheckedItems({
         all: checkedChange,
         kr: checkedChange,
+        streetfood: checkedChange,
         cn: checkedChange,
         jp: checkedChange,
         us: checkedChange,
@@ -173,7 +175,7 @@ export default function Page() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
             </svg>
           </Link>
-          <h1>맞춤 설정</h1>
+          <h1>맞춤설정</h1>
         </nav>
       </header>
 
@@ -185,6 +187,7 @@ export default function Page() {
               {[
                 { id: "all", label: "전체" },
                 { id: "kr", label: "한식" },
+                { id: "streetfood", label: "분식" },
                 { id: "cn", label: "중식" },
                 { id: "jp", label: "일식" },
                 { id: "us", label: "양식" },
@@ -200,7 +203,7 @@ export default function Page() {
                   id={item.id}
                   onClick={() => clickCheckedEvent(item.id)}
                   style={{
-                    backgroundColor: checkedItems[item.id] ? "rgb(237, 76, 0)" : "white",
+                    backgroundColor: checkedItems[item.id] ? "#EB4726" : "white",
                     color: checkedItems[item.id] ? "white" : "inherit",
                   }}
                 >
@@ -225,7 +228,7 @@ export default function Page() {
                   id={item.id}
                   onClick={() => clickCheckedPriceEvent(item.id)}
                   style={{
-                    backgroundColor: priceCheckedItems[item.id] ? "rgb(237, 76, 0)" : "white",
+                    backgroundColor: priceCheckedItems[item.id] ? "#EB4726" : "white",
                     color: priceCheckedItems[item.id] ? "white" : "inherit",
                   }}
                 >
@@ -243,7 +246,7 @@ export default function Page() {
       </main>
 
       <div className={styles.btnWrap}>
-        <button className={`${styles.button} ${!notAllow ? styles.active : ""}`} type="button" onClick={() => clickMoveChange()}>
+        <button className={`${styles.button}`} type="button" onClick={() => clickMoveChange()}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.icon}>
             <path
               strokeLinecap="round"

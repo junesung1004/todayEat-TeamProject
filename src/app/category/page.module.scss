@@ -31,7 +31,7 @@
     }
     h1 {
       font-size: lager;
-      margin-left: 20px;
+      margin-left: 70px;
       letter-spacing: 0.2rem;
     }
   }
@@ -127,9 +127,16 @@
       border: 1px solid #aaaaaa;
       background-color: white;
       &:last-child {
-        border: none;
-        background-color: #eb4726;
         color: white;
+        border: none;
+        background-color: rgba(235, 71, 38, 0.2);
+      }
+      &.disabled {
+        background-color: rgba(235, 71, 38, 0.4); // Background color when disabled
+      }
+
+      &.active {
+        background-color: #eb4726; // Background color when active
       }
     }
   }
