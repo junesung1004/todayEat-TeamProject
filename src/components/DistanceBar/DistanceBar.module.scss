@@ -1,0 +1,32 @@
+.container {
+  width: 300px;
+  .distanceBar {
+    color: #eb4726;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  .stickbar {
+    cursor: grab;
+    width: 100%;
+  }
+  .labels {
+    display: flex;
+    margin-bottom: 40px;
+
+    span {
+      color: #aaaaaa;
+      &:nth-child(1) {
+        margin-right: 35px;
+      }
+      &:nth-child(2) {
+        margin-right: 28px;
+      }
+      &:nth-child(3) {
+        margin-right: 40px;
+      }
+      &:nth-child(4) {
+        margin-right: 35px;
+      }
+    }
+  }
+}
