@@ -1,5 +1,5 @@
 //몽고db 연결하는 파일
-
+//npm install mongodb
 import { MongoClient } from "mongodb";
 
 const url = "";

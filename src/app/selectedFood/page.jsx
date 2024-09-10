@@ -1,3 +1,4 @@
+import KakaoMap from "@/components/KakaoMap/KakaoMap";
 import styles from "./page.module.scss";
 
 export default function Page() {
@@ -21,7 +22,7 @@ export default function Page() {
       </div>
 
       <article className={styles.kakaomap}>
-        <p>카카오 지도 뿌려줄 내용</p>
+        <KakaoMap />
       </article>
 
       <article className={styles.shopDistance}>

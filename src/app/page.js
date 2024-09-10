@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 //npm install framer-motion
+//npm install sharp
 import logo from "../../public/images/logo.png";
 
 export default function App() {
@@ -14,7 +15,7 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => {
       router.push("/start");
-    }, 3000);
+    }, 2000);
   }, [router]);
 
   return (
