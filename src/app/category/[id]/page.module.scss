@@ -9,7 +9,7 @@
   position: relative;
   background-color: white;
   width: 100%;
-  min-height: 100vh;
+
   padding: 50px 20px;
   display: flex;
   flex-direction: column;
@@ -97,8 +97,8 @@
     align-items: center;
     color: white;
     position: absolute;
-    top: 290px;
-    right: 30px;
+    top: 305px;
+    right: 10px;
   }
   .text2 {
     font-size: 14px;
@@ -108,8 +108,8 @@
     align-items: center;
     color: white;
     position: absolute;
-    top: 400px;
-    right: 70px;
+    top: 390px;
+    right: 68px;
   }
   .pointer {
     position: absolute;
@@ -138,13 +138,13 @@
   cursor: pointer;
   position: absolute;
   z-index: 9;
-  right: 40px;
-  bottom: 420px;
+  right: 55px;
+  bottom: 138px;
 }
 .heart {
   cursor: pointer;
   position: absolute;
   z-index: 9;
-  right: 100px;
-  bottom: 420px;
+  right: 120px;
+  bottom: 138px;
 }

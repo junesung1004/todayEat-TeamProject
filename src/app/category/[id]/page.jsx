@@ -60,17 +60,22 @@ export default function Page() {
           <Link href={"/category"}>조건변경</Link>
         </nav>
         <Card />
-        <Image
-          onClick={() => {
-            clickMovePage();
-          }}
-          src={locationIcon}
-          alt="지도모양 아이콘"
-          width={40}
-          height={40}
-          className={styles.locate}
-        />
-        <Image src={heartIcon} alt="하트모양 아이콘" width={40} height={40} className={styles.heart} />
+        <Link href={"/selectedFood"}>
+          <Image
+            onClick={() => {
+              clickMovePage();
+            }}
+            src={locationIcon}
+            alt="지도모양 아이콘"
+            width={40}
+            height={40}
+            className={styles.locate}
+          />
+        </Link>
+
+        <Link href={"/mypage"}>
+          <Image src={heartIcon} alt="하트모양 아이콘" width={40} height={40} className={styles.heart} />
+        </Link>
       </div>
     </>
   );
