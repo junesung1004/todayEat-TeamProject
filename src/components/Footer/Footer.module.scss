@@ -1,14 +1,13 @@
 .container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 30px 20px;
   border-top: 1px solid #dedede;
-  background-color: rgba(23, 123, 44, 0.1);
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    li {
-      font-weight: bold;
-    }
+  height: 36px;
+  gap: 150px;
+  .icon {
+    width: 24px;
+    height: 24px;
   }
 }

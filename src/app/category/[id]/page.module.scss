@@ -6,9 +6,10 @@
 }
 
 .container {
+  position: relative;
   background-color: white;
   width: 100%;
-  min-height: 100vh;
+
   padding: 50px 20px;
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
   }
   .cardContainer {
     display: flex;
@@ -66,4 +67,84 @@
       }
     }
   }
+}
+.background {
+  position: absolute;
+  width: 320px;
+  height: 471px;
+  border-radius: 10px;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 89px;
+  right: 20px;
+
+  .text {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: absolute;
+    top: 120px;
+    left: 30px;
+  }
+  .text1 {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: absolute;
+    top: 305px;
+    right: 10px;
+  }
+  .text2 {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: absolute;
+    top: 390px;
+    right: 68px;
+  }
+  .pointer {
+    position: absolute;
+    top: 160px;
+  }
+  .iconWrap {
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    display: flex;
+    align-items: center;
+    p {
+      cursor: pointer;
+      color: white;
+    }
+    .icon {
+      cursor: pointer;
+      color: white;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.locate {
+  cursor: pointer;
+  position: absolute;
+  z-index: 9;
+  right: 55px;
+  bottom: 138px;
+}
+.heart {
+  cursor: pointer;
+  position: absolute;
+  z-index: 9;
+  right: 120px;
+  bottom: 138px;
 }

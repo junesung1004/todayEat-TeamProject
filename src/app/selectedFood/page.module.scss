@@ -1,0 +1,78 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  .imgWrap {
+    width: 100%;
+    height: 205px;
+    border: 1px solid black;
+    p {
+    }
+  }
+
+  .foodDescContainer {
+    display: flex;
+    margin-bottom: 20px;
+    .foodWrap {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 15px 0px 10px 25px;
+      .box {
+        font-size: 14px;
+        background-color: black;
+        padding: 7px 11px;
+        color: white;
+        border-radius: 15px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .kakaomap {
+    width: 314px;
+    height: 149px;
+    border: 1px solid black;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  .shopDistance {
+    padding: 0 0 25px 25px;
+    p {
+      border-bottom: 1px solid#CCCCCC;
+      padding-bottom: 20px;
+      strong {
+        font-weight: 800;
+      }
+    }
+  }
+
+  .shopContainer {
+    padding: 30px 20px;
+    .shopWrap {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      h3 {
+        margin-bottom: 10px;
+      }
+      .shopDesc {
+        display: flex;
+        flex-direction: column;
+        .text {
+          display: flex;
+        }
+        p {
+          &:nth-child(1) {
+            margin-right: 15px;
+          }
+          &:nth-child(2) {
+            margin-right: 90px;
+          }
+        }
+      }
+    }
+  }
+}

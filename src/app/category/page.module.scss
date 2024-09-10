@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-family: "SUITE-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
@@ -11,19 +11,27 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 20px;
   height: 100%;
   padding: 90px 20px;
   font-weight: bold;
-  font-family: "Pretendard-Regular", sans-serif;
+  font-family: "SUITE-Regular", sans-serif;
 
   .header {
     display: flex;
     align-items: center;
+    margin-bottom: 40px;
     .nav {
+      display: flex;
+      gap: 10px;
+      .icon {
+        width: 30px;
+        height: 30px;
+      }
     }
     h1 {
-      margin-left: 40px;
+      font-size: lager;
+      margin-left: 70px;
       letter-spacing: 0.2rem;
     }
   }
@@ -41,7 +49,6 @@
           gap: 10px;
           .itemBox {
             cursor: pointer;
-            background-color: rgba(246, 247, 247, 0.4);
             opacity: 0.7;
             border: 1px solid #dedede;
             display: flex;
@@ -71,7 +78,6 @@
           gap: 10px;
           .itemBox {
             cursor: pointer;
-            background-color: rgba(246, 247, 247, 0.7);
             opacity: 0.7;
             border: 1px solid #dedede;
             display: flex;
@@ -98,18 +104,40 @@
     }
   }
 
-  .button {
-    background-color: #ffd5c0;
-    padding: 10px;
-    border-radius: 8px;
-    font-weight: bold;
-    letter-spacing: 0.1rem;
-    color: white;
-    transition: all 0.6s;
-    cursor: not-allowed; /* 기본 상태에서 커서를 변경 */
-    &.active {
-      cursor: pointer;
-      background-color: rgb(237, 76, 0);
+  .btnWrap {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    .icon {
+      width: 25px;
+      height: 25px;
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 160px;
+      height: 56px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      letter-spacing: 0.1rem;
+      font-weight: bold;
+      color: black;
+      border: 1px solid #aaaaaa;
+      background-color: white;
+      &:last-child {
+        color: white;
+        border: none;
+        background-color: rgba(235, 71, 38, 0.2);
+      }
+      &.disabled {
+        background-color: rgba(235, 71, 38, 0.4); // Background color when disabled
+      }
+
+      &.active {
+        background-color: #eb4726; // Background color when active
+      }
     }
   }
 }

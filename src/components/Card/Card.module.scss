@@ -1,23 +1,91 @@
-/* Card.module.scss */
-
 .swiper-container {
   width: 320px;
-  height: 400px;
+  height: 471px;
   border-radius: 10px;
-}
+  .slide-1 {
+    background-color: aqua;
+  }
 
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%; /* 부모 컨테이너에 맞추기 위해 100%로 설정 */
-}
+  .slide-2 {
+    background-color: tomato;
+  }
 
-.swiper-slide img {
-  width: 100%; /* 부모 컨테이너에 맞추기 위해 100%로 설정 */
-  height: 100%; /* 비율 유지 */
-  object-fit: cover; /* 필요에 따라 cover 또는 contain */
+  .slide-3 {
+    background-color: pink;
+  }
+
+  .slide-4 {
+    background-color: yellow;
+  }
+
+  .slide-5 {
+    background-color: blueviolet;
+  }
+  .swiper-slide {
+    cursor: grab;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%; /* 부모 컨테이너에 맞추기 위해 100%로 설정 */
+    h3 {
+      color: white;
+      position: absolute;
+      top: 290px;
+      left: 25px;
+      font-size: 1.4rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .imageDesc {
+      span {
+        display: block;
+      }
+      .box1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 65px;
+        height: 32px;
+        background-color: white;
+        position: absolute;
+        top: 325px;
+        left: 25px;
+        border-radius: 16px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .box2 {
+        color: white;
+        position: absolute;
+        top: 331px;
+        left: 100px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .box3 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 65px;
+        height: 32px;
+        background-color: white;
+        position: absolute;
+        top: 365px;
+        left: 25px;
+        border-radius: 16px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .box4 {
+        color: white;
+        position: absolute;
+        top: 371px;
+        left: 100px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+    }
+    .img {
+      width: 100%; /* 부모 컨테이너에 맞추기 위해 100%로 설정 */
+      height: 100%; /* 비율 유지 */
+      object-fit: cover; /* 필요에 따라 cover 또는 contain */
+    }
+  }
 }
-//주석 
-//주석2

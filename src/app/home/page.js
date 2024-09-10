@@ -9,7 +9,7 @@ export default function Home() {
       <section className={styles.title}>
         <h1>오늘 뭐 먹지 ?</h1>
         <p>투데잇이</p>
-        <p>골라줄게 !</p>
+        <p>골라줄게요</p>
       </section>
 
       <section className={styles.imageContainer}>
