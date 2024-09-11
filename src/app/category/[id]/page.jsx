@@ -9,6 +9,7 @@ import { useState } from "react";
 import locationIcon from "../../../../public/images/locationIcon.png";
 import heartIcon from "../../../../public/images/heartIcon.png";
 import { useRouter } from "next/navigation";
+import { mockData } from "@/components/Card/Card";
 
 export default function Page() {
   const [display, setDisplay] = useState(true);
@@ -18,8 +19,17 @@ export default function Page() {
 
   const router = useRouter();
 
+  console.log("mockData : ", mockData);
+
+  const [selectedFood, setSelectedFood] = useState(mockData);
+
   const clickMovePage = () => {
-    router.push("/selectedFood");
+    if (selectedFood) {
+      const { title, price, calories } = selectedFood;
+      router.push(`/selectedFood?title=${encodeURIComponent(title)}&price=${encodeURIComponent(price)}&calories=${encodeURIComponent(calories)}`);
+    } else {
+      console.log("선택된 음식이 없습니다.");
+    }
   };
 
   return (
@@ -59,19 +69,15 @@ export default function Page() {
           <Link href={"/"}>이미지</Link>
           <Link href={"/category"}>조건변경</Link>
         </nav>
-        <Card />
-        <Link href={"/selectedFood"}>
-          <Image
-            onClick={() => {
-              clickMovePage();
-            }}
-            src={locationIcon}
-            alt="지도모양 아이콘"
-            width={40}
-            height={40}
-            className={styles.locate}
-          />
-        </Link>
+        <Card onSlideChange={setSelectedFood} />
+        <button
+          type="button"
+          onClick={() => {
+            clickMovePage();
+          }}
+        >
+          <Image src={locationIcon} alt="지도모양 아이콘" width={40} height={40} className={styles.locate} />
+        </button>
 
         <Link href={"/mypage"}>
           <Image src={heartIcon} alt="하트모양 아이콘" width={40} height={40} className={styles.heart} />
