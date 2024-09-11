@@ -57,7 +57,7 @@ export default function KakaoMap({ selectedfood }) {
     const ps = new window.kakao.maps.services.Places();
     const keywordOptions = {
       location: new window.kakao.maps.LatLng(latitude, longitude),
-      radius: 500,
+      radius: 400,
     };
 
     ps.keywordSearch(
