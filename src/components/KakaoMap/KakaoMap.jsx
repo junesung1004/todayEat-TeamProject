@@ -14,6 +14,9 @@ export default function KakaoMap({ selectedfood }) {
   // 키워드 기반으로 검색된 장소들을 담는 배열 state
   const [place, setPlace] = useState([]);
 
+  const distance = localStorage.getItem("distance");
+  console.log("distance", distance);
+
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
@@ -57,7 +60,7 @@ export default function KakaoMap({ selectedfood }) {
     const ps = new window.kakao.maps.services.Places();
     const keywordOptions = {
       location: new window.kakao.maps.LatLng(latitude, longitude),
-      radius: 400,
+      radius: distance,
     };
 
     ps.keywordSearch(
@@ -85,10 +88,20 @@ export default function KakaoMap({ selectedfood }) {
       position: new window.kakao.maps.LatLng(place.y, place.x),
     });
 
-    // 마커에 클릭이벤트를 등록합니다.
+    // 마커에 클릭이벤트를 등록합니다..
     window.kakao.maps.event.addListener(marker, "click", () => {
       const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
-      infowindow.setContent('<div style="padding: 5px; font-size:12px">' + place.place_name + "</div>");
+
+      const content = `<div>
+        <a href="https://map.kakao.com/link/to/${place.place_name},${place.y},${place.x}" target="_blank">매장안내</a>
+
+        <div>${place.place_name}</div>
+        <div>${place.road_address_name || place.address_name}</div>
+        <div>${place.phone || ""}</div>
+      </div>`;
+      //<img src=${place.place_url} width={50} height={50}/> 위에 들어가야함
+
+      infowindow.setContent(content);
       infowindow.open(map, marker);
     });
   };

@@ -13,6 +13,8 @@ export default function Page() {
 
   const router = useRouter();
 
+  const distance = localStorage.getItem("distance");
+
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const title = queryParams.get("title") || "";
@@ -46,7 +48,7 @@ export default function Page() {
 
       <article className={styles.shopDistance}>
         <p>
-          <strong>1km</strong>내에 <strong>7개</strong>의 매장이 있어요
+          <strong>{distance}m</strong>내에 <strong>7개</strong>의 매장이 있어요
         </p>
       </article>
 
