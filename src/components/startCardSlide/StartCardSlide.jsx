@@ -24,10 +24,7 @@ export default function StartCardSlide() {
       loop={true}
       slidesPerView={1} // 두 개의 슬라이드를 보이도록 설정
       centeredSlides={true} // 슬라이드 중앙 정렬
-      navigation
-      modules={[Navigation, Pagination, Scrollbar, EffectFade]}
-      effect="fade"
-      scrollbar={{ draggable: true }}
+      modules={[Pagination]}
       pagination={{ clickable: true }}
     >
       <SwiperSlide className={`${styles["swiper-slide"]} ${styles["slide-1"]}`}>

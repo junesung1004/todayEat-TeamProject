@@ -9,16 +9,30 @@
       }
     }
   }
-
-  .logOutBtn {
-    padding: 0 0 0 15px;
-    margin-bottom: 40px;
-    color: #aaaaaa;
+  .btnContainer {
     display: flex;
-    background-color: white;
-    transition: all 0.3s;
-    &:hover {
-      color: black;
+    gap: 70px;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 40px;
+    .logOutBtn {
+      padding: 0 0 0 15px;
+      color: #aaaaaa;
+      display: flex;
+      background-color: white;
+      transition: all 0.3s;
+      &:hover {
+        color: black;
+      }
+    }
+    .editBtn {
+      width: 59px;
+      height: 33px;
+      background-color: #ed4c00;
+      border-radius: 53px;
+      color: white;
+      letter-spacing: 0.2rem;
+      font-weight: 500;
     }
   }
 
@@ -34,26 +48,39 @@
     border-radius: 8px;
     margin-bottom: 30px;
     .likeWrap {
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 146px;
       height: 32px;
-      background-color: white;
+      // background-color: white;
       border-radius: 8px;
+      color: #aaaaaa;
+      &.likeChecked {
+        color: black;
+        background-color: white; // isChecked가 true일 때 배경색
+      }
       .like {
         margin-left: 5px;
         color: #ed4c00;
       }
     }
     .disLikeWrap {
+      cursor: pointer;
+
       display: flex;
       align-items: center;
       justify-content: center;
       width: 146px;
       height: 32px;
-      background-color: white;
+      // background-color: white;
       border-radius: 8px;
+      color: #aaaaaa;
+      &.disLikeChecked {
+        color: black;
+        background-color: white; // isChecked가 true일 때 배경색
+      }
       .disLike {
         margin-left: 5px;
         color: #ed4c00;
@@ -65,7 +92,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    // justify-content: center;
     gap: 10px;
     width: 335px;
     height: 550px;

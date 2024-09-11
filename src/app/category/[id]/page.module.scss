@@ -10,7 +10,7 @@
   background-color: white;
   width: 100%;
 
-  padding: 80px 20px;
+  padding: 35px 20px;
   display: flex;
   flex-direction: column;
   font-family: "Pretendard-Regular", sans-serif;
@@ -85,7 +85,7 @@
     color: white;
     position: absolute;
     top: 240px;
-    left: 35px;
+    left: 65px;
   }
   .text1 {
     font-size: 14px;
@@ -96,7 +96,7 @@
     color: white;
     position: absolute;
     top: 485px;
-    right: 20px;
+    right: 10px;
   }
   .text2 {
     font-size: 14px;
@@ -106,13 +106,13 @@
     align-items: center;
     color: white;
     position: absolute;
-    top: 570px;
-    right: 88px;
+    top: 380px;
+    right: 50px;
   }
   .pointer {
     position: absolute;
     top: 280px;
-    left: 15px;
+    left: 10px;
   }
   .iconWrap {
     position: absolute;
@@ -137,13 +137,13 @@
   cursor: pointer;
   position: absolute;
   z-index: 9;
-  right: 55px;
-  bottom: 138px;
+  right: 40px;
+  bottom: 130px;
 }
 .heart {
   cursor: pointer;
   position: absolute;
   z-index: 9;
-  right: 120px;
-  bottom: 138px;
+  right: 90px;
+  bottom: 130px;
 }
