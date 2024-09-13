@@ -1,32 +1,54 @@
+"use client";
+
+import KakaoMap from "@/components/KakaoMap/KakaoMap";
 import styles from "./page.module.scss";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Page() {
   const item = [1, 2, 3];
+
+  const [foodData, setFoodData] = useState({ title: "", price: "", calories: "" });
+  console.log("foodData : ", foodData);
+
+  const router = useRouter();
+
+  const distance = localStorage.getItem("distance");
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const title = queryParams.get("title") || "";
+    const price = queryParams.get("price") || "";
+    const calories = queryParams.get("calories") || "";
+
+    setFoodData({ title, price, calories });
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.imgWrap}>
         <div>이미지태그</div>
-        <h3>이미지 사진 들어올거임</h3>
+        <h3>{foodData.title}</h3>
       </div>
 
       <div className={styles.foodDescContainer}>
         <div className={styles.foodWrap}>
           <div className={styles.box}>평균가</div>
-          <p>9500원</p>
+          <p>{foodData.price}원</p>
         </div>
         <div className={styles.foodWrap}>
           <div className={styles.box}>칼로리</div>
-          <p>680Kcal</p>
+          <p>{foodData.calories}</p>
         </div>
       </div>
 
       <article className={styles.kakaomap}>
-        <p>카카오 지도 뿌려줄 내용</p>
+        <KakaoMap selectedfood={foodData} />
       </article>
 
       <article className={styles.shopDistance}>
         <p>
-          <strong>1km</strong>내에 <strong>7개</strong>의 매장이 있어요
+          <strong>{distance}m</strong>내에 <strong>7개</strong>의 매장이 있어요
         </p>
       </article>
 

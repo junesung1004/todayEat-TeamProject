@@ -30,6 +30,7 @@ export default function Page() {
     fifteen: false,
   });
 
+  const [distance, setDistance] = useState(0);
   const [notAllow, setNotAllow] = useState(true);
 
   // 페이지 이동 버튼 이벤트
@@ -54,6 +55,13 @@ export default function Page() {
       }).toString();
       router.push(`/category/${queryString}`);
     }
+  };
+
+  //초기화 버튼 이벤트
+  const clickResetBtn = () => {
+    setCheckedItems(false);
+    setPriceCheckedItems(false);
+    setDistance(0);
   };
 
   // 카테고리 버튼 클릭 이벤트
@@ -159,12 +167,12 @@ export default function Page() {
       }
     }
 
-    if (isCategoryChecked && isPriceCategoryChecked) {
+    if (isCategoryChecked && isPriceCategoryChecked && distance >= 1) {
       setNotAllow(false);
     } else {
       setNotAllow(true);
     }
-  }, [checkedItems, priceCheckedItems]);
+  }, [checkedItems, priceCheckedItems, distance]);
 
   return (
     <div className={styles.container}>
@@ -240,13 +248,13 @@ export default function Page() {
 
           <article className={styles.distanceCategoryContainer}>
             <h3>매장 거리 지정</h3>
-            <DistanceBar />
+            <DistanceBar distanceValue={distance} onDistanceChange={(value) => setDistance(value)} />
           </article>
         </section>
       </main>
 
       <div className={styles.btnWrap}>
-        <button className={`${styles.button}`} type="button" onClick={() => clickMoveChange()}>
+        <button className={`${styles.button}`} type="button" onClick={() => clickResetBtn()}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.icon}>
             <path
               strokeLinecap="round"
