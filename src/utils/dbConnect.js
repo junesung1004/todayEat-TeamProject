@@ -2,9 +2,13 @@
 //npm install mongodb
 import { MongoClient } from "mongodb";
 
-const url = "";
+const url = process.env.MONGODB_URI;
 const options = {};
 let connectDB;
+
+if (!url) {
+  throw new Error("MONGODB_URI must be defined");
+}
 
 if (process.env.NODE_ENV === "development") {
   //npm run dev일때
