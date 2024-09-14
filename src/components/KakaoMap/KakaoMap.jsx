@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function KakaoMap({ selectedfood }) {
+export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
   // 현재 위치를 업데이트 시켜줄 변수 생성
   const [currentPosition, setCurrentPosition] = useState({
     latitude: null,
@@ -13,6 +13,7 @@ export default function KakaoMap({ selectedfood }) {
 
   // 키워드 기반으로 검색된 장소들을 담는 배열 state
   const [place, setPlace] = useState([]);
+  // console.log("place :", place);
 
   const distance = localStorage.getItem("distance");
   console.log("distance", distance);
@@ -68,6 +69,7 @@ export default function KakaoMap({ selectedfood }) {
       (data, status) => {
         if (status === window.kakao.maps.services.Status.OK) {
           setPlace(data);
+          onPlaceUpdate(data);
           const bounds = new window.kakao.maps.LatLngBounds();
 
           for (let i = 0; i < data.length; i++) {

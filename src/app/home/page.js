@@ -1,9 +1,27 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./page.module.scss";
 import Image from "next/image";
-4;
+import { useEffect, useState } from "react";
+import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+  const [user, setUser] = useState();
+  //console.log(user);
+
+  useEffect(() => {
+    // 클라이언트 사이드에서만 실행
+    const storedUser = localStorage.getItem("user");
+    setUser(storedUser);
+    console.log(storedUser);
+  }, []);
+
+  const togglePopUp = () => {
+    setIsPopUpVisible((prev) => !prev);
+  };
+
   return (
     <div className={styles.container}>
       <section className={styles.title}>

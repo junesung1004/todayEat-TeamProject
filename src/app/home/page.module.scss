@@ -1,13 +1,14 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-between;
   width: 100%;
-  padding: 100px 10px;
+
   .title {
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 50px;
+    margin-left: 20px;
     h1 {
       letter-spacing: 0.1rem;
       font-size: 2.3rem;
@@ -58,6 +59,22 @@
           background-color: rgba(237, 76, 0, 1);
         }
       }
+    }
+  }
+  .footerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    border-top: 1px solid #dedede;
+    height: 36px;
+    gap: 150px;
+    button {
+      background-color: inherit;
+    }
+    .icon {
+      width: 24px;
+      height: 24px;
     }
   }
 }

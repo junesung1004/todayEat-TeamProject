@@ -4,16 +4,30 @@ import KakaoMap from "@/components/KakaoMap/KakaoMap";
 import styles from "./page.module.scss";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
 
 export default function Page() {
-  const item = [1, 2, 3];
-
   const [foodData, setFoodData] = useState({ title: "", price: "", calories: "" });
   console.log("foodData : ", foodData);
-
+  const [places, setPlaces] = useState([]);
+  console.log("places : ", places);
+  const [visibleCount, setVisibleCount] = useState(3); // 초기에는 3개만 보여줄 수 있는 state
   const router = useRouter();
 
   const distance = localStorage.getItem("distance");
+
+  const handlePlacesUpdate = (newPlaces) => {
+    setPlaces(newPlaces);
+  };
+
+  const handleLoadMore = () => {
+    setVisibleCount(visibleCount + 4);
+  };
+
+  const togglePopUp = () => {
+    setIsPopUpVisible((prev) => !prev);
+  };
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -43,21 +57,21 @@ export default function Page() {
       </div>
 
       <article className={styles.kakaomap}>
-        <KakaoMap selectedfood={foodData} />
+        <KakaoMap selectedfood={foodData} onPlaceUpdate={handlePlacesUpdate} />
       </article>
 
       <article className={styles.shopDistance}>
         <p>
-          <strong>{distance}m</strong>내에 <strong>7개</strong>의 매장이 있어요
+          <strong>{distance}m</strong>내에 <strong>{places.length}</strong>개의 매장이 있어요
         </p>
       </article>
 
       <section className={styles.shopContainer}>
         <article className={styles.shopWrap}>
-          {item.map((item, idx) => {
+          {places.slice(0, visibleCount).map((item, idx) => {
             return (
               <div className={styles.shopDesc} key={idx}>
-                <h3>매장이름</h3>
+                <h3>{item.place_name}</h3>
                 <div className={styles.text}>
                   <p>매장 평점</p>
                   <p>영업 시간</p>
@@ -67,6 +81,11 @@ export default function Page() {
             );
           })}
         </article>
+        {visibleCount < places.length && (
+          <button className={styles.moreBtn} onClick={handleLoadMore}>
+            더보기
+          </button>
+        )}
       </section>
     </div>
   );

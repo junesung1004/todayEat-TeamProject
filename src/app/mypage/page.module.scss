@@ -94,7 +94,7 @@
     align-items: center;
     // justify-content: center;
     gap: 10px;
-    width: 335px;
+    width: 314px;
     height: 550px;
     overflow: auto;
     margin: 0 auto;
@@ -115,5 +115,22 @@
   }
   .foodsImgContainer::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Edge, Opera */
+  }
+
+  .footerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    border-top: 1px solid #dedede;
+    height: 36px;
+    gap: 150px;
+    button {
+      background-color: inherit;
+    }
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
   }
 }

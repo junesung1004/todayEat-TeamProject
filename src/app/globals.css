@@ -5,21 +5,18 @@
   /* overflow: hidden; */
 }
 
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
   /* min-height: 100vh; */
   margin: 0 auto;
   background-color: rgb(250, 250, 250);
-  font-family: "NanumSquareNeoBold", sans-serif; /* 기본 폰트 적용 */
-  font-weight: bold;
-}
-
-/* 나눔스퀘어 폰트 정의 */
-@font-face {
-  font-family: "NanumSquareNeoBold";
-  src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.eot);
-  src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.eot?#iefix) format("embedded-opentype"),
-    url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.woff) format("woff"),
-    url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.ttf) format("truetype");
+  font-family: "Pretendard-Regular", sans-serif;
 }
 
 ul,

@@ -61,6 +61,7 @@
       .shopDesc {
         display: flex;
         flex-direction: column;
+        font-size: 14px;
         .text {
           display: flex;
         }
@@ -71,8 +72,35 @@
           &:nth-child(2) {
             margin-right: 90px;
           }
+          &:nth-child(3) {
+            cursor: pointer;
+          }
         }
       }
+    }
+  }
+
+  .moreBtn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    background-color: inherit;
+  }
+
+  .footerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    border-top: 1px solid #dedede;
+    height: 36px;
+    gap: 150px;
+    button {
+      background-color: inherit;
+    }
+    .icon {
+      width: 24px;
+      height: 24px;
     }
   }
 }

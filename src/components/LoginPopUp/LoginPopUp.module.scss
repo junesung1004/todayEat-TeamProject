@@ -1,0 +1,64 @@
+.container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 360px;
+  height: 100vh;
+  z-index: 10;
+  top: 0px;
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  .popUpContainer {
+    z-index: 99;
+    margin: 0 auto;
+    width: 328px;
+    height: 178px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    border: 2px solid black;
+    border-radius: 8px;
+    .loginPopUpContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .title {
+        text-align: center;
+        .point {
+          color: #ed4c00;
+        }
+      }
+    }
+
+    .btnContainer {
+      display: flex;
+      // flex-direction: column;
+      gap: 10px;
+      .loginBtn {
+        width: 144px;
+        height: 40px;
+        background-color: #ed4c00;
+        border-radius: 8px;
+        color: white;
+      }
+      .closeBtn {
+        width: 144px;
+        height: 40px;
+        border: 1px solid #aaaaaa;
+        border-radius: 8px;
+        background-color: white;
+        color: black;
+      }
+    }
+  }
+}
