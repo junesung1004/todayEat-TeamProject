@@ -1,5 +1,6 @@
 "use client";
 
+import { useUser } from "@/context/userContext";
 import { useEffect, useState } from "react";
 
 export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
@@ -11,12 +12,11 @@ export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
 
   const selectedFoodName = selectedfood.title;
 
+  let currentInfoWindow = null;
+
   // 키워드 기반으로 검색된 장소들을 담는 배열 state
   const [place, setPlace] = useState([]);
-  // console.log("place :", place);
-
-  const distance = localStorage.getItem("distance");
-  console.log("distance", distance);
+  const { selectedDistance } = useUser();
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -61,7 +61,7 @@ export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
     const ps = new window.kakao.maps.services.Places();
     const keywordOptions = {
       location: new window.kakao.maps.LatLng(latitude, longitude),
-      radius: distance,
+      radius: selectedDistance,
     };
 
     ps.keywordSearch(
@@ -92,6 +92,11 @@ export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
 
     // 마커에 클릭이벤트를 등록합니다..
     window.kakao.maps.event.addListener(marker, "click", () => {
+      console.log("currentInfoWindow :", currentInfoWindow);
+      if (currentInfoWindow) {
+        currentInfoWindow.close();
+      }
+
       const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
 
       const content = `<div>
@@ -105,6 +110,8 @@ export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
 
       infowindow.setContent(content);
       infowindow.open(map, marker);
+      console.log("infowindow1 :", infowindow);
+      currentInfoWindow = infowindow;
     });
   };
 
