@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 //npm install framer-motion
 //npm install sharp
 import logo from "../../public/images/logo.png";
+import { UserProvider, useUser } from "@/context/userContext";
 
 export default function App() {
   const router = useRouter();

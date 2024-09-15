@@ -1,9 +1,10 @@
+import { useUser } from "@/context/userContext";
 import { connectDB } from "@/utils/dbConnect";
 import NextAuth from "next-auth/next";
 import KakaoProvider from "next-auth/providers/kakao";
 import { signIn } from "next-auth/react";
 
-//npm i next-auth..
+//npm i next-auth
 
 export const authOptions = {
   providers: [
@@ -29,7 +30,6 @@ export const authOptions = {
         const client = await connectDB;
         const db = client.db("todayEatTeamProject");
         const userCollection = db.collection("users");
-
         //사용자 id로 기존 사용자 확인
         const existingUser = await userCollection.findOne({ id: user.id });
 

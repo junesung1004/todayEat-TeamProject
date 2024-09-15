@@ -28,14 +28,6 @@ export default function Page() {
     setDisplay(false);
   };
 
-  const togglePopUp = () => {
-    if (user) {
-      router.push("/mypage");
-    } else {
-      setIsPopUpVisible((prev) => !prev);
-    }
-  };
-
   console.log("mockData : ", mockData);
 
   const [selectedFood, setSelectedFood] = useState(mockData);
@@ -46,6 +38,33 @@ export default function Page() {
       router.push(`/selectedFood?title=${encodeURIComponent(title)}&price=${encodeURIComponent(price)}&calories=${encodeURIComponent(calories)}`);
     } else {
       console.log("선택된 음식이 없습니다.");
+    }
+  };
+
+  const clickUpdateLike = async () => {
+    if (!user) {
+      setIsPopUpVisible((prev) => !prev);
+      return;
+    }
+
+    try {
+      const { title, price, calories } = selectedFood;
+      if (title && price && calories) {
+        const response = await fetch("/api/likeFood", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title, price, calories }),
+        });
+        const data = await response.json();
+        console.log("data", data);
+      } else {
+        console.log("음식 정보가 없습니다.");
+      }
+    } catch (error) {
+      console.error("error: ", error);
+      throw new Error("좋아하는 음식 업데이트 에러");
     }
   };
 
@@ -97,31 +116,9 @@ export default function Page() {
           <Image src={locationIcon} alt="지도모양 아이콘" width={40} height={40} className={styles.locate} />
         </button>
 
-        <Link href={"/mypage"}>
+        <button onClick={() => clickUpdateLike()}>
           <Image src={heartIcon} alt="하트모양 아이콘" width={40} height={40} className={styles.heart} />
-        </Link>
-
-        <footer className={styles.footerContainer}>
-          <Link href={"/"}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.icon}>
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-              />
-            </svg>
-          </Link>
-
-          <button onClick={togglePopUp}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.icon}>
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-              />
-            </svg>
-          </button>
-        </footer>
+        </button>
       </div>
     </>
   );

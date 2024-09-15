@@ -5,13 +5,16 @@ import styles from "./LoginBtn.module.scss";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import kakao from "../../../public/images/kakaoBtn.png";
+import { useUser } from "@/context/userContext";
 
 export default function LoginBtn() {
-  const [user, setUser] = useState(true);
+  const { isLogin, setIsLogin } = useUser();
 
   const handleSignIn = () => {
-    localStorage.setItem("user", JSON.stringify(user));
-    signIn("kakao", { callbackUrl: "/home" }); // 로그인 후 /home으로 리다이렉트
+    setIsLogin(true);
+    console.log("isLogin : ", isLogin);
+    const login = signIn("kakao", { callbackUrl: `/home?login=true` });
+    console.log("login : ", login);
   };
 
   return (

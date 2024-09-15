@@ -6,16 +6,21 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
 import { useSession } from "next-auth/react";
+import { useUser } from "@/context/userContext";
+// import { useRouter } from "next/router";
 
 export default function Home() {
-  const [user, setUser] = useState();
-  //console.log(user);
-
+  // const router = useRouter();
+  // console.log("router : ", router);
+  // const { login } = router.query;
+  const { isLogin, setIsLogin } = useUser();
+  console.log("isLogin : ", isLogin);
+  console.log(window?.location);
   useEffect(() => {
-    // 클라이언트 사이드에서만 실행
-    const storedUser = localStorage.getItem("user");
-    setUser(storedUser);
-    console.log(storedUser);
+    if (window.location.search.includes("true")) {
+      console.log("User is logged in.");
+      setIsLogin(true);
+    }
   }, []);
 
   const togglePopUp = () => {

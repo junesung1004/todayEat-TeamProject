@@ -5,24 +5,18 @@ import styles from "./Footer.module.scss";
 import Link from "next/link";
 import LoginPopUp from "../LoginPopUp/LoginPopUp";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/context/userContext";
 
 export default function Footer() {
-  const [user, setUser] = useState();
-  console.log(user);
-
   const router = useRouter();
 
-  useEffect(() => {
-    // 클라이언트 사이드에서만 실행
-    const storedUser = localStorage.getItem("user");
-    setUser(storedUser);
-    console.log(storedUser);
-  }, []);
+  const { isLogin } = useUser();
+  console.log("isLogin : ", isLogin);
 
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
 
   const togglePopUp = () => {
-    if (user) {
+    if (isLogin) {
       router.push("mypage");
     } else {
       setIsPopUpVisible((prev) => !prev);

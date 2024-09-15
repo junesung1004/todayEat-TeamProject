@@ -6,6 +6,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
+import { useUser } from "@/context/userContext";
 
 export default function Page() {
   const [foodData, setFoodData] = useState({ title: "", price: "", calories: "" });
@@ -15,7 +16,8 @@ export default function Page() {
   const [visibleCount, setVisibleCount] = useState(3); // 초기에는 3개만 보여줄 수 있는 state
   const router = useRouter();
 
-  const distance = localStorage.getItem("distance");
+  const { selectedDistance } = useUser();
+  console.log("selectedDistance : ", selectedDistance);
 
   const handlePlacesUpdate = (newPlaces) => {
     setPlaces(newPlaces);
@@ -62,7 +64,7 @@ export default function Page() {
 
       <article className={styles.shopDistance}>
         <p>
-          <strong>{distance}m</strong>내에 <strong>{places.length}</strong>개의 매장이 있어요
+          <strong>{selectedDistance}m</strong>내에 <strong>{places.length}</strong>개의 매장이 있어요
         </p>
       </article>
 

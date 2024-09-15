@@ -5,8 +5,11 @@ import styles from "./page.module.scss";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import DistanceBar from "@/components/DistanceBar/DistanceBar";
+import { useUser } from "@/context/userContext";
 
 export default function Page() {
+  const { isLogin, setIsLogin } = useUser();
+  console.log("isLogin : ", isLogin);
   const router = useRouter();
   // 각 아이템 박스의 체크 상태를 관리하는 state
   const [checkedItems, setCheckedItems] = useState({
