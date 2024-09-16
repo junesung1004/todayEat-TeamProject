@@ -1,9 +1,32 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./page.module.scss";
 import Image from "next/image";
-4;
+import { useEffect, useState } from "react";
+import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
+import { useSession } from "next-auth/react";
+import { useUser } from "@/context/userContext";
+// import { useRouter } from "next/router";
 
 export default function Home() {
+  // const router = useRouter();
+  // console.log("router : ", router);
+  // const { login } = router.query;
+  const { isLogin, setIsLogin } = useUser();
+  console.log("isLogin : ", isLogin);
+  console.log(window?.location);
+  useEffect(() => {
+    if (window.location.search.includes("true")) {
+      console.log("User is logged in.");
+      setIsLogin(true);
+    }
+  }, []);
+
+  const togglePopUp = () => {
+    setIsPopUpVisible((prev) => !prev);
+  };
+
   return (
     <div className={styles.container}>
       <section className={styles.title}>

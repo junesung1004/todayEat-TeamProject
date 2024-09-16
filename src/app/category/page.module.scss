@@ -11,15 +11,16 @@
   background-color: white;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   height: 100%;
-  padding: 30px 20px;
+  padding: 0 20px;
   font-weight: bold;
   font-family: "SUITE-Regular", sans-serif;
 
   .header {
     display: flex;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     .nav {
       display: flex;
       gap: 10px;

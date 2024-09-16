@@ -1,8 +1,9 @@
 "use client";
 
+import { useUser } from "@/context/userContext";
 import { useEffect, useState } from "react";
 
-export default function KakaoMap({ selectedfood }) {
+export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
   // 현재 위치를 업데이트 시켜줄 변수 생성
   const [currentPosition, setCurrentPosition] = useState({
     latitude: null,
@@ -11,11 +12,11 @@ export default function KakaoMap({ selectedfood }) {
 
   const selectedFoodName = selectedfood.title;
 
+  let currentInfoWindow = null;
+
   // 키워드 기반으로 검색된 장소들을 담는 배열 state
   const [place, setPlace] = useState([]);
-
-  const distance = localStorage.getItem("distance");
-  console.log("distance", distance);
+  const { selectedDistance } = useUser();
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -60,7 +61,7 @@ export default function KakaoMap({ selectedfood }) {
     const ps = new window.kakao.maps.services.Places();
     const keywordOptions = {
       location: new window.kakao.maps.LatLng(latitude, longitude),
-      radius: distance,
+      radius: selectedDistance,
     };
 
     ps.keywordSearch(
@@ -68,6 +69,7 @@ export default function KakaoMap({ selectedfood }) {
       (data, status) => {
         if (status === window.kakao.maps.services.Status.OK) {
           setPlace(data);
+          onPlaceUpdate(data);
           const bounds = new window.kakao.maps.LatLngBounds();
 
           for (let i = 0; i < data.length; i++) {
@@ -90,6 +92,11 @@ export default function KakaoMap({ selectedfood }) {
 
     // 마커에 클릭이벤트를 등록합니다..
     window.kakao.maps.event.addListener(marker, "click", () => {
+      console.log("currentInfoWindow :", currentInfoWindow);
+      if (currentInfoWindow) {
+        currentInfoWindow.close();
+      }
+
       const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
 
       const content = `<div>
@@ -103,6 +110,8 @@ export default function KakaoMap({ selectedfood }) {
 
       infowindow.setContent(content);
       infowindow.open(map, marker);
+      console.log("infowindow1 :", infowindow);
+      currentInfoWindow = infowindow;
     });
   };
 

@@ -8,6 +8,29 @@
   .stickbar {
     cursor: grab;
     width: 100%;
+    -webkit-appearance: none; /* 기본 스타일 제거 */
+    // height: 8px; /* 바의 높이 설정 */
+    background: #f0f0f0; /* 바의 배경색 설정 */
+    border-radius: 5px; /* 바의 모서리 둥글게 설정 */
+    outline: none; /* 포커스 아웃라인 제거 */
+
+    /* 슬라이더 바의 색상 */
+    &::-webkit-slider-runnable-track {
+      // height: 8px; /* 슬라이더 바의 높이 설정 */
+      background: #f0f0f0; /* 슬라이더 바의 배경색 설정 */
+      border-radius: 5px; /* 슬라이더 바의 모서리 둥글게 설정 */
+    }
+
+    /* 슬라이더 핸들 색상 */
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none; /* 기본 스타일 제거 */
+      appearance: none;
+      width: 20px; /* 핸들의 너비 설정. .*/
+      height: 20px; /* 핸들의 높이 설정 */
+      border-radius: 50%; /* 핸들을 원형으로 설정 */
+      background: #ed4c00; /* 핸들의 배경색 설정 */
+      cursor: pointer; /* 핸들에 마우스 커서 설정 */
+    }
   }
   .labels {
     display: flex;

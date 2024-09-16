@@ -7,18 +7,11 @@
   min-height: 100vh;
   margin: 0 auto;
   box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 29px 0px;
-  .header {
-    width: 100%;
-    height: 50px;
-  }
+
   .main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 30px;
-  }
-  .footer {
-    width: 100%;
-    height: 60px;
   }
 }

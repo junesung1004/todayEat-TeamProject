@@ -5,19 +5,28 @@ import Link from "next/link";
 import styles from "./page.module.scss";
 import Image from "next/image";
 import pointer from "../../../../public/images/pointer.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import locationIcon from "../../../../public/images/locationIcon.png";
 import heartIcon from "../../../../public/images/heartIcon.png";
 import { useRouter } from "next/navigation";
 import { mockData } from "@/components/Card/Card";
+import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
 
 export default function Page() {
   const [display, setDisplay] = useState(true);
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+  const [user, setUser] = useState();
+  console.log("user : ", user);
+  const router = useRouter();
+
+  useEffect(() => {
+    const isUser = localStorage.getItem("user");
+    setUser(isUser);
+  }, []);
+
   const clickDisPlayEvent = () => {
     setDisplay(false);
   };
-
-  const router = useRouter();
 
   console.log("mockData : ", mockData);
 
@@ -32,9 +41,37 @@ export default function Page() {
     }
   };
 
+  const clickUpdateLike = async () => {
+    if (!user) {
+      setIsPopUpVisible((prev) => !prev);
+      return;
+    }
+
+    try {
+      const { title, price, calories } = selectedFood;
+      if (title && price && calories) {
+        const response = await fetch("/api/likeFood", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title, price, calories }),
+        });
+        const data = await response.json();
+        console.log("data", data);
+      } else {
+        console.log("음식 정보가 없습니다.");
+      }
+    } catch (error) {
+      console.error("error: ", error);
+      throw new Error("좋아하는 음식 업데이트 에러");
+    }
+  };
+
   return (
     <>
       <div className={styles.container}>
+        {isPopUpVisible && <LoginPopUp />}
         {display && (
           <div className={styles.background}>
             <div className={styles.text}>
@@ -79,9 +116,9 @@ export default function Page() {
           <Image src={locationIcon} alt="지도모양 아이콘" width={40} height={40} className={styles.locate} />
         </button>
 
-        <Link href={"/mypage"}>
+        <button onClick={() => clickUpdateLike()}>
           <Image src={heartIcon} alt="하트모양 아이콘" width={40} height={40} className={styles.heart} />
-        </Link>
+        </button>
       </div>
     </>
   );
