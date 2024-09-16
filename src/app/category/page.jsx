@@ -269,7 +269,7 @@ export default function Page() {
           <p>초기화</p>
         </button>
         <button className={`${styles.button} ${!notAllow ? styles.active : ""}`} type="button" onClick={() => clickMoveChange()} disabled={notAllow}>
-          메뉴 보기
+          적용하기
         </button>
       </div>
     </div>

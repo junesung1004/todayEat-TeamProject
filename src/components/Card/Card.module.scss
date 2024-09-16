@@ -1,7 +1,9 @@
 .swiper-container {
-  width: 320px;
-  height: 471px;
+  width: 304px;
+  height: 446px;
   border-radius: 10px;
+  background-color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   .slide-1 {
     background-color: aqua;
   }
@@ -30,56 +32,39 @@
     width: 100%;
     height: 100%; /* 부모 컨테이너에 맞추기 위해 100%로 설정 */
     h3 {
-      color: white;
       position: absolute;
-      top: 290px;
-      left: 25px;
+      top: 350px;
+      left: 15px;
       font-size: 1.4rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     }
     .imageDesc {
-      span {
-        display: block;
-      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 385px;
+      left: 15px;
       .box1 {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 65px;
-        height: 32px;
-        background-color: white;
-        position: absolute;
-        top: 325px;
-        left: 25px;
-        border-radius: 16px;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-right: 3px;
+        color: #aaaaaa;
       }
       .box2 {
-        color: white;
-        position: absolute;
-        top: 331px;
-        left: 100px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        margin-right: 30px;
       }
       .box3 {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 65px;
-        height: 32px;
-        background-color: white;
-        position: absolute;
-        top: 365px;
-        left: 25px;
-        border-radius: 16px;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        color: #aaaaaa;
+        margin-right: 3px;
       }
       .box4 {
-        color: white;
-        position: absolute;
-        top: 371px;
-        left: 100px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       }
     }
     .img {

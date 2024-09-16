@@ -11,12 +11,18 @@ import heartIcon from "../../../../public/images/heartIcon.png";
 import { useRouter } from "next/navigation";
 import { mockData } from "@/components/Card/Card";
 import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
+import logo from "@/../../public/images/logo2.png";
+import todayeat from "@/../../public/images/투데잇2.png";
+import heart from "@/../../public/images/heart.png";
+import blackHeart from "@/../../public/images/blackHeart.png";
+import location from "@/../../public/images/location.png";
 
 export default function Page() {
   const [display, setDisplay] = useState(true);
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
   const [user, setUser] = useState();
   console.log("user : ", user);
+  const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -45,6 +51,8 @@ export default function Page() {
     if (!user) {
       setIsPopUpVisible((prev) => !prev);
       return;
+    } else {
+      setIsChecked((prev) => !prev);
     }
 
     try {
@@ -103,22 +111,46 @@ export default function Page() {
           </div>
         )}
         <nav>
-          <Link href={"/"}>이미지</Link>
-          <Link href={"/category"}>조건변경</Link>
+          <div>
+            <Link href={"/home"}>
+              <div className={styles.logoWrap}>
+                <Image src={logo} priority width={41} height={41} alt="투데잇 로고" />
+                <Image src={todayeat} priority width={59} height={26} alt="투데잇 텍스트" />
+              </div>
+            </Link>
+          </div>
+
+          <Link href={"/category"} className={styles.filterLogo}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
+              />
+            </svg>
+          </Link>
         </nav>
         <Card onSlideChange={setSelectedFood} />
-        <button
-          type="button"
-          onClick={() => {
-            clickMovePage();
-          }}
-        >
-          <Image src={locationIcon} alt="지도모양 아이콘" width={40} height={40} className={styles.locate} />
-        </button>
 
-        <button onClick={() => clickUpdateLike()}>
-          <Image src={heartIcon} alt="하트모양 아이콘" width={40} height={40} className={styles.heart} />
-        </button>
+        <div className={styles.iconWrap2}>
+          {isChecked ? (
+            <Image onClick={() => clickUpdateLike()} src={blackHeart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
+          ) : (
+            <Image onClick={() => clickUpdateLike()} src={heart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
+          )}
+          <div className={styles.line}>|</div>
+          <Image
+            onClick={() => {
+              clickMovePage();
+            }}
+            src={location}
+            alt="지도모양 아이콘"
+            priority
+            width={24}
+            height={24}
+            className={styles.icon}
+          />
+        </div>
       </div>
     </>
   );
