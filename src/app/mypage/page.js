@@ -8,6 +8,10 @@ import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
 import Link from "next/link";
 import Footer from "@/components/Footer/Footer";
 import { useUser } from "@/context/userContext";
+import logo from "@/../../public/images/logo.png";
+import exit from "@/../../public/images/exit.png";
+import pen from "@/../../public/images/pen.png";
+import Image from "next/image";
 
 export default function Page() {
   const mock1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
@@ -57,6 +61,7 @@ export default function Page() {
   return (
     <div className={styles.container}>
       <div className={styles.userInfoContainer}>
+        <Image src={logo} alt="로고이미지" priority width={43} height={34} />
         <h2>
           <span className={styles.userName}>{user?.name}</span>님
         </h2>
@@ -64,10 +69,12 @@ export default function Page() {
       </div>
 
       <div className={styles.btnContainer}>
-        <button onClick={() => clickHomeMove()} className={styles.logOutBtn}>
-          로그아웃
-        </button>
-        <button className={styles.editBtn}>편집</button>
+        <div className={styles.logOutBtnWrap}>
+          <Image src={exit} alt="로그아웃 로고" width={16} height={16} priority />
+          <button onClick={() => clickHomeMove()} className={styles.logOutBtn}>
+            로그아웃
+          </button>
+        </div>
       </div>
 
       <article className={styles.likeDisLikeContainer}>
@@ -100,6 +107,10 @@ export default function Page() {
             );
           })}
       </section>
+      <div className={styles.editBtnWrap}>
+        <Image src={pen} alt="수정로고" priority width={20} height={20} />
+        <button className={styles.editBtn}>편집</button>
+      </div>
     </div>
   );
 }

@@ -51,24 +51,36 @@ export default function Page() {
     if (!user) {
       setIsPopUpVisible((prev) => !prev);
       return;
-    } else {
-      setIsChecked((prev) => !prev);
     }
+    // 상태가 변경된 후에 로직 실행
+    const updatedIsChecked = !isChecked;
+    setIsChecked(updatedIsChecked);
 
     try {
       const { title, price, calories } = selectedFood;
+
       if (title && price && calories) {
-        const response = await fetch("/api/likeFood", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ title, price, calories }),
-        });
-        const data = await response.json();
-        console.log("data", data);
-      } else {
-        console.log("음식 정보가 없습니다.");
+        if (updatedIsChecked) {
+          const response = await fetch("/api/likeFood", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title, price, calories }),
+          });
+          const data = await response.json();
+          console.log("추가 완료", data);
+        } else {
+          const response = await fetch("/api/likeFood", {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title }),
+          });
+          const data = await response.json();
+          console.log("삭제 완료", data);
+        }
       }
     } catch (error) {
       console.error("error: ", error);

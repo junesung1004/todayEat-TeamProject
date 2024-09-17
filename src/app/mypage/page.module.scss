@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  background-color: white;
   .userInfoContainer {
     padding: 40px 0 10px 15px;
     h2 {
@@ -15,24 +16,27 @@
     justify-content: space-around;
     align-items: center;
     margin-bottom: 40px;
-    .logOutBtn {
-      padding: 0 0 0 15px;
-      color: #aaaaaa;
+    position: absolute;
+    top: 77px;
+    left: 150px;
+    .logOutBtnWrap {
       display: flex;
-      background-color: white;
-      transition: all 0.3s;
-      &:hover {
-        color: black;
+      align-items: center;
+      justify-content: center;
+      width: 99px;
+      height: 30px;
+      border: 1px solid #aaaaaa;
+      border-radius: 15px;
+      .logOutBtn {
+        padding: 0 0 0 5px;
+        color: #aaaaaa;
+        display: flex;
+        background-color: white;
+        transition: all 0.3s;
+        &:hover {
+          color: black;
+        }
       }
-    }
-    .editBtn {
-      width: 59px;
-      height: 33px;
-      background-color: #ed4c00;
-      border-radius: 53px;
-      color: white;
-      letter-spacing: 0.2rem;
-      font-weight: 500;
     }
   }
 
@@ -95,7 +99,7 @@
     // justify-content: center;
     gap: 10px;
     width: 314px;
-    height: 550px;
+    height: 512px;
     overflow: auto;
     margin: 0 auto;
     margin-bottom: 30px;
@@ -131,6 +135,25 @@
     .icon {
       width: 24px;
       height: 24px;
+    }
+  }
+  .editBtnWrap {
+    position: absolute;
+    left: 190px;
+    bottom: 250px;
+    width: 85px;
+    height: 45px;
+    background-color: #ed4c00;
+    border-radius: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    .editBtn {
+      color: white;
+      background-color: inherit;
+      letter-spacing: 0.2rem;
+      font-weight: 500;
     }
   }
 }

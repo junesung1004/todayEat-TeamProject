@@ -17,6 +17,21 @@ export default async function updateLikeHandler(req, res) {
     } else {
       return res.status(400).json({ error: "잘못된 요청 데이터" });
     }
+  } else if (req.method === "DELETE") {
+    const { title } = req.body;
+    if (title) {
+      try {
+        const client = await connectDB;
+        const db = client.db("todayEatTeamProject");
+        const result = await db.collection("likeFood").deleteOne({ title });
+        return res.status(200).json({ success: true, data: result });
+      } catch (error) {
+        console.error("좋아요 음식 취소 에러 : ", error);
+        return res.status(500).json({ error: "서버기능 오류" });
+      }
+    } else {
+      return res.status(400).json({ error: "잘못된 요청 데이터" });
+    }
   } else {
     return res.status(405).json({ error: "Method Not Allowed" });
   }

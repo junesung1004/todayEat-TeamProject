@@ -13,7 +13,7 @@ export default function Page() {
   console.log("foodData : ", foodData);
   const [places, setPlaces] = useState([]);
   console.log("places : ", places);
-  const [visibleCount, setVisibleCount] = useState(3); // 초기에는 3개만 보여줄 수 있는 state
+  const [visibleCount, setVisibleCount] = useState(2); // 초기에는 3개만 보여줄 수 있는 state
   const router = useRouter();
 
   const { selectedDistance } = useUser();
