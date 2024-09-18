@@ -27,10 +27,10 @@ export default function Page() {
   });
 
   const [priceCheckedItems, setPriceCheckedItems] = useState({
-    priceAll: false,
-    eight: false,
-    ten: false,
-    fifteen: false,
+    1000000: false,
+    8000: false,
+    10000: false,
+    15000: false,
   });
 
   const [distance, setDistance] = useState(0);
@@ -118,10 +118,10 @@ export default function Page() {
       // "전체" 아이템이 클릭되었을 때, 모든 항목을 현재 "all"의 상태로 설정
       const checkedChange = !priceCheckedItems.priceAll; //checkedItems의 변수들을 모두 선택해서 반전시켜준다.
       setPriceCheckedItems({
-        priceAll: checkedChange,
-        eight: checkedChange,
-        ten: checkedChange,
-        fifteen: checkedChange,
+        1000000: checkedChange,
+        8000: checkedChange,
+        10000: checkedChange,
+        15000: checkedChange,
       });
     } else {
       // 개별 아이템이 클릭되었을 때 상태 업데이트
@@ -137,14 +137,14 @@ export default function Page() {
         //모든 항목이 체크되어있는지 확인
         let allChecked = true;
         for (let id in updatedItems) {
-          if (id !== "priceAll" && !updatedItems[id]) {
+          if (id !== "1000000" && !updatedItems[id]) {
             allChecked = false;
           }
         }
 
         return {
           ...updatedItems,
-          priceAll: allChecked,
+          0: allChecked,
         };
       });
     }
@@ -228,10 +228,10 @@ export default function Page() {
             <h3>가격대</h3>
             <div className={styles.categoryWrap}>
               {[
-                { id: "priceAll", label: "전체" },
-                { id: "eight", label: "8000원 이하" },
-                { id: "ten", label: "10000원 이하" },
-                { id: "fifteen", label: "15000원 이하" },
+                { id: "1000000", label: "전체" },
+                { id: "8000", label: "8000원 이하" },
+                { id: "10000", label: "10000원 이하" },
+                { id: "15000", label: "15000원 이하" },
               ].map((item) => (
                 <div
                   key={item.id}

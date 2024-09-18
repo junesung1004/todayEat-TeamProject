@@ -4,31 +4,28 @@ import Card from "@/components/Card/Card";
 import Link from "next/link";
 import styles from "./page.module.scss";
 import Image from "next/image";
-import pointer from "../../../../public/images/pointer.png";
+import pointer from "../../../../public/images/handPoint.png";
+import arrow from "@/../../public/images/화살표.png";
+import Ellipse from "@/../../public/images/Ellipse.png";
 import { useEffect, useState } from "react";
-import locationIcon from "../../../../public/images/locationIcon.png";
-import heartIcon from "../../../../public/images/heartIcon.png";
+import locationIcon from "../../../../public/images/locationIcon1.png";
+import heartIcon from "../../../../public/images/heartIcon1.png";
+import leftArrow from "../../../../public/images/leftArrow.png";
+import rightArrow from "../../../../public/images/rightArrow.png";
 import { useRouter } from "next/navigation";
 import { mockData } from "@/components/Card/Card";
 import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
 import logo from "@/../../public/images/logo2.png";
 import todayeat from "@/../../public/images/투데잇2.png";
-import heart from "@/../../public/images/heart.png";
-import blackHeart from "@/../../public/images/blackHeart.png";
-import location from "@/../../public/images/location.png";
+
+import { useUser } from "@/context/userContext";
 
 export default function Page() {
   const [display, setDisplay] = useState(true);
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
-  const [user, setUser] = useState();
-  console.log("user : ", user);
-  const [isChecked, setIsChecked] = useState(false);
-  const router = useRouter();
+  const { isLogin } = useUser();
 
-  useEffect(() => {
-    const isUser = localStorage.getItem("user");
-    setUser(isUser);
-  }, []);
+  const router = useRouter();
 
   const clickDisPlayEvent = () => {
     setDisplay(false);
@@ -47,51 +44,10 @@ export default function Page() {
     }
   };
 
-  const clickUpdateLike = async () => {
-    if (!user) {
-      setIsPopUpVisible((prev) => !prev);
-      return;
-    }
-    // 상태가 변경된 후에 로직 실행
-    const updatedIsChecked = !isChecked;
-    setIsChecked(updatedIsChecked);
-
-    try {
-      const { title, price, calories } = selectedFood;
-
-      if (title && price && calories) {
-        if (updatedIsChecked) {
-          const response = await fetch("/api/likeFood", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ title, price, calories }),
-          });
-          const data = await response.json();
-          console.log("추가 완료", data);
-        } else {
-          const response = await fetch("/api/likeFood", {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ title }),
-          });
-          const data = await response.json();
-          console.log("삭제 완료", data);
-        }
-      }
-    } catch (error) {
-      console.error("error: ", error);
-      throw new Error("좋아하는 음식 업데이트 에러");
-    }
-  };
-
   return (
     <>
       <div className={styles.container}>
-        {isPopUpVisible && <LoginPopUp />}
+        {isPopUpVisible && <LoginPopUp onClose={() => setIsPopUpVisible(false)} />}
         {display && (
           <div className={styles.background}>
             <div className={styles.text}>
@@ -113,12 +69,16 @@ export default function Page() {
               }}
               className={styles.iconWrap}
             >
-              <p>{`Click Me`}</p>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.icon}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
               </svg>
             </div>
-
+            <Image className={styles.leftArrow} src={leftArrow} alt="로고 이미지" width={50} height={95} priority />
+            <Image className={styles.rightArrow} src={rightArrow} alt="로고 이미지" width={50} height={85} priority />
+            <Image className={styles.locationIcon1} src={locationIcon} alt="로고 이미지" width={24} height={24} priority />
+            <Image className={styles.heartIcon1} src={heartIcon} alt="로고 이미지" width={24} height={24} priority />
+            <Image className={styles.ellipse} src={Ellipse} alt="로고 이미지" width={20} height={20} priority />
+            <Image className={styles.arrow} src={arrow} alt="로고 이미지" width={236} height={22} priority />
             <Image className={styles.pointer} src={pointer} alt="예시 이미지" />
           </div>
         )}
@@ -142,27 +102,7 @@ export default function Page() {
             </svg>
           </Link>
         </nav>
-        <Card onSlideChange={setSelectedFood} />
-
-        <div className={styles.iconWrap2}>
-          {isChecked ? (
-            <Image onClick={() => clickUpdateLike()} src={blackHeart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
-          ) : (
-            <Image onClick={() => clickUpdateLike()} src={heart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
-          )}
-          <div className={styles.line}>|</div>
-          <Image
-            onClick={() => {
-              clickMovePage();
-            }}
-            src={location}
-            alt="지도모양 아이콘"
-            priority
-            width={24}
-            height={24}
-            className={styles.icon}
-          />
-        </div>
+        <Card onSlideChange={setSelectedFood} selectedFood={selectedFood} setIsPopUpVisible={setIsPopUpVisible} />
       </div>
     </>
   );

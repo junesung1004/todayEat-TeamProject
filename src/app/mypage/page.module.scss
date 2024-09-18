@@ -1,7 +1,9 @@
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: white;
+  min-height: 92.5vh;
   .userInfoContainer {
     padding: 40px 0 10px 15px;
     h2 {
@@ -18,7 +20,7 @@
     margin-bottom: 40px;
     position: absolute;
     top: 77px;
-    left: 150px;
+    left: 110px;
     .logOutBtnWrap {
       display: flex;
       align-items: center;
@@ -50,7 +52,7 @@
     background-color: #fff5f1;
     margin: 0 auto;
     border-radius: 8px;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
     .likeWrap {
       cursor: pointer;
       display: flex;
@@ -99,7 +101,7 @@
     // justify-content: center;
     gap: 10px;
     width: 314px;
-    height: 512px;
+    height: 352px;
     overflow: auto;
     margin: 0 auto;
     margin-bottom: 30px;
@@ -139,10 +141,10 @@
   }
   .editBtnWrap {
     position: absolute;
-    left: 190px;
-    bottom: 250px;
+    left: 138px;
+    top: 80%;
     width: 85px;
-    height: 45px;
+    height: 40px;
     background-color: #ed4c00;
     border-radius: 53px;
     display: flex;
