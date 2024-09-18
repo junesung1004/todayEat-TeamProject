@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState([]);
+  //console.log("selectedPrice", selectedPrice);
   const router = useRouter();
   const { isLogin } = useUser();
   const [likedItems, setLikedItems] = useState({}); // 각 음식의 좋아요 상태 저장
@@ -85,7 +86,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
         const data = await response.json();
 
         if (data.success) {
-          const filteredFoodItem = data.data.filter((item) => item.average_price <= selectedPrice);
+          const filteredFoodItem = data.data.filter((item) => selectedPrice.some((price) => item.average_price <= price));
           const filteredFoodItem2 = filteredFoodItem.filter((item) => selectedCategories.some((category) => item.category.includes(category)));
           console.log("filteredFoodItem2 : ", filteredFoodItem2);
           setFoodItems(filteredFoodItem2);
