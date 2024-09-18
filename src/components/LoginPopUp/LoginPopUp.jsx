@@ -1,20 +1,27 @@
+"use client";
+
 import { useState } from "react";
 import styles from "./LoginPopUp.module.scss";
 import { signIn } from "next-auth/react";
+import { useUser } from "@/context/userContext";
 
-export default function LoginPopUp() {
+export default function LoginPopUp({ onClose }) {
   const [isVisible, setIsVisible] = useState(true);
-  const [user, setUser] = useState(true);
   const closeBtn = () => {
     setIsVisible(false);
+    if (onClose) {
+      onClose(); // onClose가 있는지 체크
+    }
   };
   if (!isVisible) {
     return null;
   }
 
+  const { setIsLogin } = useUser();
+
   const handleSignIn = () => {
-    localStorage.setItem("user", JSON.stringify(user));
-    signIn("kakao", { callbackUrl: "/home" });
+    setIsLogin(true);
+    signIn("kakao", { callbackUrl: `/home?login=true` });
   };
 
   return (

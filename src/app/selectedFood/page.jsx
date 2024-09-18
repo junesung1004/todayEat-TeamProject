@@ -13,7 +13,7 @@ export default function Page() {
   console.log("foodData : ", foodData);
   const [places, setPlaces] = useState([]);
   console.log("places : ", places);
-  const [visibleCount, setVisibleCount] = useState(3); // 초기에는 3개만 보여줄 수 있는 state
+  const [visibleCount, setVisibleCount] = useState(2); // 초기에는 3개만 보여줄 수 있는 state
   const router = useRouter();
 
   const { selectedDistance } = useUser();
@@ -33,9 +33,9 @@ export default function Page() {
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
-    const title = queryParams.get("title") || "";
-    const price = queryParams.get("price") || "";
-    const calories = queryParams.get("calories") || "";
+    const title = queryParams.get("foodname") || "";
+    const price = queryParams.get("foodprice") || "";
+    const calories = queryParams.get("foodcalorie") || "";
 
     setFoodData({ title, price, calories });
   }, []);
@@ -44,15 +44,14 @@ export default function Page() {
     <div className={styles.container}>
       <div className={styles.imgWrap}>
         <div>이미지태그</div>
-        <h3>{foodData.title}</h3>
       </div>
 
       <div className={styles.foodDescContainer}>
+        <h3>{foodData.title}</h3>
+
         <div className={styles.foodWrap}>
           <div className={styles.box}>평균가</div>
           <p>{foodData.price}원</p>
-        </div>
-        <div className={styles.foodWrap}>
           <div className={styles.box}>칼로리</div>
           <p>{foodData.calories}</p>
         </div>
@@ -64,7 +63,8 @@ export default function Page() {
 
       <article className={styles.shopDistance}>
         <p>
-          <strong>{selectedDistance}m</strong>내에 <strong>{places.length}</strong>개의 매장이 있어요
+          <strong>{selectedDistance == 500 ? "500m" : selectedDistance == 1000 ? "1km" : selectedDistance == 1500 ? "1.5km" : "2km"}</strong>내에 <strong>{places.length}</strong>
+          개의 매장이 있어요
         </p>
       </article>
 
@@ -75,9 +75,10 @@ export default function Page() {
               <div className={styles.shopDesc} key={idx}>
                 <h3>{item.place_name}</h3>
                 <div className={styles.text}>
-                  <p>매장 평점</p>
-                  <p>영업 시간</p>
-                  <p>자세히 보기</p>
+                  <p>{item.distance}m</p>
+                  <Link className={styles.link} href={`https://map.kakao.com/link/to/${item.place_name},${item.y},${item.x}`}>
+                    매장안내
+                  </Link>
                 </div>
               </div>
             );

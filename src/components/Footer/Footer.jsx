@@ -17,7 +17,7 @@ export default function Footer() {
 
   const togglePopUp = () => {
     if (isLogin) {
-      router.push("mypage");
+      router.push("/mypage");
     } else {
       setIsPopUpVisible((prev) => !prev);
     }
