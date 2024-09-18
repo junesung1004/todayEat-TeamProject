@@ -122,9 +122,9 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
           onSlideChange(mockData[currentIndex]);
         }}
       >
-        {mockData.map((item) => (
+        {foodItems.map((item) => (
           <SwiperSlide
-            key={item.id}
+            key={item._id}
             style={{
               backgroundColor: item.color,
               width: "304px",
@@ -132,12 +132,12 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
             }}
             className={`${styles["swiper-slide"]} ${styles[`slide${item.id}`]}`}
           >
-            <h3>{item.title}</h3>
+            <h3>{item.name}</h3>
             <div className={styles.imageDesc}>
               <div className={styles.box1}>평균가</div>
-              <div className={styles.box2}>{item.price}원</div>
+              <div className={styles.box2}>{item.average_price}원</div>
               <div className={styles.box3}>칼로리</div>
-              <div className={styles.box4}>{item.calories}</div>
+              <div className={styles.box4}>{item.calorie}</div>
             </div>
             <div className={styles.iconWrap2}>
               {likedItems[item.id] ? (

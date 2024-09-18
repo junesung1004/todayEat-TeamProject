@@ -56,7 +56,7 @@ export default function Page() {
         categories: selectedCategories,
         price: selectedPriceCatogories,
       }).toString();
-      router.push(`/category/${queryString}`);
+      router.push(`/category?${queryString}`);
     }
   };
 
