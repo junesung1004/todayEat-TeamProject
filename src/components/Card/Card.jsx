@@ -11,32 +11,23 @@ import { useUser } from "@/context/userContext";
 import LoginPopUp from "../LoginPopUp/LoginPopUp";
 import { useRouter } from "next/navigation";
 
-export const mockData = [
-  { id: 1, color: "aqua", price: 3500, title: "김치찌개", calories: "650Kcal" },
-  { id: 2, color: "pink", price: 4500, title: "순대국", calories: "350Kcal" },
-  { id: 3, color: "lightblue", price: 23500, title: "뼈해장국", calories: "450Kcal" },
-  { id: 4, color: "yellow", price: 13500, title: "중국집", calories: "150Kcal" },
-  { id: 5, color: "tomato", price: 33500, title: "돈까스", calories: "250Kcal" },
-];
-
 export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState([]);
-
+  const router = useRouter();
   const { isLogin } = useUser();
   const [likedItems, setLikedItems] = useState({}); // 각 음식의 좋아요 상태 저장
   const [foodItems, setFoodItems] = useState([]);
-  // console.log("foodItems : ", foodItems);
+  //console.log("foodItems : ", foodItems);
 
   useEffect(() => {
-    const query = window.location.pathname;
-    console.log("query :", query);
-    const params = new URLSearchParams(query.split("/category/")[1]);
-    const categories = params.get("categories");
-    const price = params.get("price");
+    const query = window.location.search;
 
-    console.log("selectedCategories : ", selectedCategories);
-    console.log("selectedPrice : ", selectedPrice);
+    const params = new URLSearchParams(query.split("?")[1]);
+
+    const categories = params.get("categories");
+
+    const price = params.get("price");
 
     setSelectedCategories(categories ? categories.split(",") : []);
     setSelectedPrice(price ? price.split(",") : []);
@@ -95,9 +86,8 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
 
         if (data.success) {
           const filteredFoodItem = data.data.filter((item) => item.average_price <= selectedPrice);
-          const filteredFoodItem2 = filteredFoodItem.filter((item) => item.category.includes(selectedCategories));
+          const filteredFoodItem2 = filteredFoodItem.filter((item) => selectedCategories.some((category) => item.category.includes(category)));
           console.log("filteredFoodItem2 : ", filteredFoodItem2);
-
           setFoodItems(filteredFoodItem2);
         } else {
           console.error("Failed to fetch food items");
@@ -114,12 +104,11 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
     <>
       <Swiper
         className={styles["swiper-container"]}
-        loop={true}
+        loop={foodItems.length >= 1}
         slidesPerView={1}
         centeredSlides={true} // 슬라이드 중앙 정렬
         onSlideChange={(swiper) => {
           const currentIndex = swiper.realIndex;
-          onSlideChange(mockData[currentIndex]);
         }}
       >
         {foodItems.map((item) => (
@@ -148,7 +137,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
               <div className={styles.line}>|</div>
               <Image
                 onClick={() => {
-                  alert(`${item.title} 위치 확인`);
+                  router.push(`/selectedFood?foodname=${item.name}&foodprice=${item.average_price}&foodcalorie=${item.calorie}`);
                 }}
                 src={location}
                 alt="지도모양 아이콘"

@@ -38,7 +38,7 @@ export default function Home() {
       <section className={styles.imageContainer}>
         <div className={styles.imgWrap}>{/* <Image src={}/> */}</div>
         <div className={styles.btnWrap}>
-          <Link href={"/category"} className={styles.btn}>
+          <Link href={"/customization"} className={styles.btn}>
             <svg className={styles.icon} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
               <path
                 strokeLinecap="round"
