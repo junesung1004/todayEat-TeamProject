@@ -19,7 +19,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   const { isLogin } = useUser();
   const [likedItems, setLikedItems] = useState({}); // 각 음식의 좋아요 상태 저장
   const [foodItems, setFoodItems] = useState([]);
-  //console.log("foodItems : ", foodItems);
+  console.log("foodItems : ", foodItems);
 
   useEffect(() => {
     const query = window.location.search;
@@ -123,6 +123,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
             className={`${styles["swiper-slide"]} ${styles[`slide${item.id}`]}`}
           >
             <h3>{item.name}</h3>
+            {item.name === "떡볶이" && <Image src={"http://localhost:3000/api/files/66ec0f832feed332e7532ece"} alt="음식 사진" priority width={200} height={200} />}
             <div className={styles.imageDesc}>
               <div className={styles.box1}>평균가</div>
               <div className={styles.box2}>{item.average_price}원</div>
