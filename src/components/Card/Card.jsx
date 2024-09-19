@@ -123,7 +123,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
             className={`${styles["swiper-slide"]} ${styles[`slide${item.id}`]}`}
           >
             <h3>{item.name}</h3>
-            {item.name === "떡볶이" && <Image src={"http://localhost:3000/api/files/66ec0f832feed332e7532ece"} alt="음식 사진" priority width={200} height={200} />}
+            {<Image src={item.image} alt={item.name} priority width={304} height={400} />}
             <div className={styles.imageDesc}>
               <div className={styles.box1}>평균가</div>
               <div className={styles.box2}>{item.average_price}원</div>
