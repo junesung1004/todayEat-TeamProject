@@ -139,7 +139,15 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
               <div className={styles.line}>|</div>
               <Image
                 onClick={() => {
-                  router.push(`/selectedFood?foodname=${item.name}&foodprice=${item.average_price}&foodcalorie=${item.calorie}`);
+                  const queryParams = new URLSearchParams({
+                    foodname: item.name,
+                    foodprice: item.average_price,
+                    foodcalorie: item.calorie,
+                    foodimage: item.image,
+                    // Add any other item details you want to pass
+                    foodId: item.id, // Example of passing the food item ID
+                  }).toString();
+                  router.push(`/selectedFood?${queryParams}`);
                 }}
                 src={location}
                 alt="지도모양 아이콘"

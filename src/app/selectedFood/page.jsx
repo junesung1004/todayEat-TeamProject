@@ -7,17 +7,21 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
 import { useUser } from "@/context/userContext";
+import Image from "next/image";
 
 export default function Page() {
   const [foodData, setFoodData] = useState({ title: "", price: "", calories: "" });
-  console.log("foodData : ", foodData);
+  //console.log("foodData : ", foodData);
   const [places, setPlaces] = useState([]);
-  console.log("places : ", places);
+  //console.log("places : ", places);
   const [visibleCount, setVisibleCount] = useState(2); // 초기에는 3개만 보여줄 수 있는 state
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const foodimage = searchParams.get("foodimage");
+  console.log("foodimage :", foodimage);
 
   const { selectedDistance } = useUser();
-  console.log("selectedDistance : ", selectedDistance);
+  //console.log("selectedDistance : ", selectedDistance);
 
   const handlePlacesUpdate = (newPlaces) => {
     setPlaces(newPlaces);
@@ -43,7 +47,7 @@ export default function Page() {
   return (
     <div className={styles.container}>
       <div className={styles.imgWrap}>
-        <div>이미지태그</div>
+        <Image src={foodimage} alt={foodData.title} priority width={360} height={175} />
       </div>
 
       <div className={styles.foodDescContainer}>

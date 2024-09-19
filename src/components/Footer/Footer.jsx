@@ -19,6 +19,7 @@ export default function Footer() {
     if (isLogin) {
       router.push("/mypage");
     } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
       setIsPopUpVisible((prev) => !prev);
     }
   };
