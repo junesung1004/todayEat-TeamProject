@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@/context/userContext";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
   // 현재 위치를 업데이트 시켜줄 변수 생성
@@ -45,32 +45,36 @@ export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
     };
   }, []);
 
-  const keywordPlace = (location, map, latitude, longitude) => {
-    const ps = new window.kakao.maps.services.Places();
-    const keywordOptions = {
-      location: new window.kakao.maps.LatLng(latitude, longitude),
-      radius: selectedDistance,
-    };
+  const keywordPlaceRef = useRef();
 
-    ps.keywordSearch(
-      location,
-      (data, status) => {
-        if (status === window.kakao.maps.services.Status.OK) {
-          setPlace(data);
-          onPlaceUpdate(data);
-          const bounds = new window.kakao.maps.LatLngBounds();
+  useEffect(() => {
+    keywordPlaceRef.current = (location, map, latitude, longitude) => {
+      const ps = new window.kakao.maps.services.Places();
+      const keywordOptions = {
+        location: new window.kakao.maps.LatLng(latitude, longitude),
+        radius: selectedDistance,
+      };
 
-          for (let i = 0; i < data.length; i++) {
-            displayMarker(map, data[i]);
-            bounds.extend(new window.kakao.maps.LatLng(data[i].y, data[i].x));
+      ps.keywordSearch(
+        location,
+        (data, status) => {
+          if (status === window.kakao.maps.services.Status.OK) {
+            setPlace(data);
+            onPlaceUpdate(data);
+            const bounds = new window.kakao.maps.LatLngBounds();
+
+            for (let i = 0; i < data.length; i++) {
+              displayMarkerRef.current(map, data[i]);
+              bounds.extend(new window.kakao.maps.LatLng(data[i].y, data[i].x));
+            }
+
+            map.setBounds(bounds);
           }
-
-          map.setBounds(bounds);
-        }
-      },
-      keywordOptions
-    );
-  };
+        },
+        keywordOptions
+      );
+    };
+  }, [selectedDistance, onPlaceUpdate]);
 
   useEffect(() => {
     const mapContainer = document.getElementById("map");
@@ -80,17 +84,18 @@ export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
         level: 5,
       };
       const map = new window.kakao.maps.Map(mapContainer, options);
-      keywordPlace(selectedFoodName, map, currentPosition.latitude, currentPosition.longitude);
+      keywordPlaceRef.current(selectedFoodName, map, currentPosition.latitude, currentPosition.longitude);
     }
   }, [selectedFoodName, currentPosition]);
 
-  const displayMarker = (map, place) => {
+  const displayMarkerRef = useRef();
+  // displayMarker 함수 정의
+  displayMarkerRef.current = (map, place) => {
     const marker = new window.kakao.maps.Marker({
       map: map,
       position: new window.kakao.maps.LatLng(place.y, place.x),
     });
 
-    // 마커에 클릭이벤트를 등록합니다..
     window.kakao.maps.event.addListener(marker, "click", () => {
       console.log("currentInfoWindow :", currentInfoWindow);
       if (currentInfoWindow) {
@@ -98,19 +103,15 @@ export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
       }
 
       const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
-
       const content = `<div>
         <a href="https://map.kakao.com/link/to/${place.place_name},${place.y},${place.x}" target="_blank">매장안내</a>
-
         <div>${place.place_name}</div>
         <div>${place.road_address_name || place.address_name}</div>
         <div>${place.phone || ""}</div>
       </div>`;
-      //<img src=${place.place_url} width={50} height={50}/> 위에 들어가야함
 
       infowindow.setContent(content);
       infowindow.open(map, marker);
-      console.log("infowindow1 :", infowindow);
       currentInfoWindow = infowindow;
     });
   };

@@ -22,15 +22,10 @@ import kimch from "@/../../public/images/찌개.png";
 import kimchback from "@/../../public/images/찌개배경.png";
 
 export default function Home() {
-  // const router = useRouter();
-  // console.log("router : ", router);
-  // const { login } = router.query;
   const { isLogin, setIsLogin } = useUser();
-  console.log("isLogin : ", isLogin);
-  console.log(window?.location);
+
   useEffect(() => {
     if (window.location.search.includes("true")) {
-      console.log("User is logged in.");
       setIsLogin(true);
     }
   }, [setIsLogin]);
