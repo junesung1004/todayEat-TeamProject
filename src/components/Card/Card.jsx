@@ -5,7 +5,7 @@ import Image from "next/image";
 import heart from "@/../../public/images/heart.png";
 import blackHeart from "@/../../public/images/blackHeart.png";
 import location from "@/../../public/images/location.png";
-import frame from "@/../../public/images/frame.png";
+import frame from "@/../../public/images/Frame.png";
 import styles from "./Card.module.scss";
 import { useUser } from "@/context/userContext";
 import LoginPopUp from "../LoginPopUp/LoginPopUp";
