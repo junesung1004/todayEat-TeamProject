@@ -20,6 +20,7 @@ import bbang from "@/../../public/images/크로아상.png";
 import bbangback from "@/../../public/images/크로아상배경.png";
 import kimch from "@/../../public/images/찌개.png";
 import kimchback from "@/../../public/images/찌개배경.png";
+import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
   const { isLogin, setIsLogin } = useUser();
@@ -70,6 +71,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
