@@ -14,7 +14,7 @@ export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
 
   let currentInfoWindow = null;
 
-  // 키워드 기반으로 검색된 장소들을 담는 배열 state
+  /// 키워드 기반으로 검색된 장소들을 담는 배열 state
   const [place, setPlace] = useState([]);
   const { selectedDistance } = useUser();
 
