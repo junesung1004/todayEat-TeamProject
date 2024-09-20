@@ -8,6 +8,7 @@ import Link from "next/link";
 import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
 import { useUser } from "@/context/userContext";
 import Image from "next/image";
+import Footer from "@/components/Footer/Footer";
 
 export default function Page() {
   const [foodData, setFoodData] = useState({ title: "", price: "", calories: "" });
@@ -99,6 +100,7 @@ export default function Page() {
           </button>
         )}
       </section>
+      <Footer />
     </div>
   );
 }

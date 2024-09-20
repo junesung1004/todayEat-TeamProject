@@ -6,12 +6,12 @@ import { useRouter } from "next/navigation";
 import { getSession, signOut } from "next-auth/react";
 import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
 import Link from "next/link";
-import Footer from "@/components/Footer/Footer";
 import { useUser } from "@/context/userContext";
 import logo from "@/../../public/images/logo.png";
 import exit from "@/../../public/images/exit.png";
 import pen from "@/../../public/images/pen.png";
 import Image from "next/image";
+import Footer from "@/components/Footer/Footer";
 
 export default function Page() {
   const mock1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
@@ -60,31 +60,33 @@ export default function Page() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.userInfoContainer}>
-        <Image src={logo} alt="로고이미지" priority width={43} height={34} />
-        <h2>
-          <span className={styles.userName}>{user?.name}</span>님
-        </h2>
-        <h2>맛있는 식사하셨나요?</h2>
-      </div>
+      <div className={styles.userInfoWrap}>
+        <div className={styles.userInfoContainer}>
+          <Image src={logo} alt="로고이미지" priority width={43} height={34} />
+          <h2>
+            <span className={styles.userName}>{user?.name}</span>님
+          </h2>
+          <h2>맛있는 식사하셨나요?</h2>
+        </div>
 
-      <div className={styles.btnContainer}>
-        <div className={styles.logOutBtnWrap}>
-          <Image src={exit} alt="로그아웃 로고" width={16} height={16} priority />
-          <button onClick={() => clickHomeMove()} className={styles.logOutBtn}>
-            로그아웃
-          </button>
+        <div className={styles.btnContainer}>
+          <div className={styles.logOutBtnWrap}>
+            <Image src={exit} alt="로그아웃 로고" width={16} height={16} priority />
+            <button onClick={() => clickHomeMove()} className={styles.logOutBtn}>
+              로그아웃
+            </button>
+          </div>
         </div>
-      </div>
 
-      <article className={styles.likeDisLikeContainer}>
-        <div onClick={() => clickLikeBtn()} className={`${styles.likeWrap} ${isLikeChecked ? styles.likeChecked : ""}`}>
-          좋아요<span className={styles.like}>13</span>
-        </div>
-        <div onClick={() => clickDisLikeBtn()} className={`${styles.disLikeWrap} ${isDisLikeChecked ? styles.disLikeChecked : ""}`}>
-          안볼래요<span className={styles.disLike}>5</span>
-        </div>
-      </article>
+        <article className={styles.likeDisLikeContainer}>
+          <div onClick={() => clickLikeBtn()} className={`${styles.likeWrap} ${isLikeChecked ? styles.likeChecked : ""}`}>
+            좋아요<span className={styles.like}>13</span>
+          </div>
+          <div onClick={() => clickDisLikeBtn()} className={`${styles.disLikeWrap} ${isDisLikeChecked ? styles.disLikeChecked : ""}`}>
+            안볼래요<span className={styles.disLike}>5</span>
+          </div>
+        </article>
+      </div>
 
       <section className={styles.foodsImgContainer}>
         {isLikeChecked &&
@@ -111,6 +113,7 @@ export default function Page() {
         <Image src={pen} alt="수정로고" priority width={20} height={20} />
         <button className={styles.editBtn}>편집</button>
       </div>
+      <Footer />
     </div>
   );
 }

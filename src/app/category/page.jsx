@@ -19,6 +19,7 @@ import logo from "@/../public/images/logo2.png";
 import todayeat from "@/../public/images/투데잇2.png";
 
 import { useUser } from "@/context/userContext";
+import Footer from "@/components/Footer/Footer";
 
 export default function Page() {
   const [display, setDisplay] = useState(true);
@@ -90,7 +91,7 @@ export default function Page() {
             </Link>
           </div>
 
-          <Link href={"/category"} className={styles.filterLogo}>
+          <Link href={"/customization"} className={styles.filterLogo}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
               <path
                 strokeLinecap="round"
@@ -101,6 +102,7 @@ export default function Page() {
           </Link>
         </nav>
         <Card onSlideChange={setSelectedFood} selectedFood={selectedFood} setIsPopUpVisible={setIsPopUpVisible} />
+        <Footer />
       </div>
     </>
   );
