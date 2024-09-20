@@ -33,7 +33,7 @@ export default function Home() {
       console.log("User is logged in.");
       setIsLogin(true);
     }
-  }, []);
+  }, [setIsLogin]);
 
   const togglePopUp = () => {
     setIsPopUpVisible((prev) => !prev);

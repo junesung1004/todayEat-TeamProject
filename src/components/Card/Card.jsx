@@ -32,7 +32,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
 
     setSelectedCategories(categories ? categories.split(",") : []);
     setSelectedPrice(price ? price.split(",") : []);
-  }, [window.location]);
+  }, []);
 
   const clickUpdateLike = async (item) => {
     if (!isLogin) {
@@ -99,7 +99,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
     };
 
     fetchFoodItems();
-  }, [selectedPrice]); // Run once on mount
+  }, [selectedPrice, selectedCategories]); // Run once on mount
 
   return (
     <>

@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./LoginPopUp.module.scss";
 import { signIn } from "next-auth/react";
 import { useUser } from "@/context/userContext";
 
 export default function LoginPopUp({ onClose }) {
   const [isVisible, setIsVisible] = useState(true);
+  const { setIsLogin } = useUser();
+
   const closeBtn = () => {
     setIsVisible(false);
     if (onClose) {
@@ -16,8 +18,6 @@ export default function LoginPopUp({ onClose }) {
   if (!isVisible) {
     return null;
   }
-
-  const { setIsLogin } = useUser();
 
   const handleSignIn = () => {
     setIsLogin(true);

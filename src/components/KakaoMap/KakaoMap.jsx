@@ -45,18 +45,6 @@ export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
     };
   }, []);
 
-  useEffect(() => {
-    const mapContainer = document.getElementById("map");
-    if (mapContainer && selectedFoodName && currentPosition.latitude !== null && currentPosition.longitude !== null) {
-      const options = {
-        center: new window.kakao.maps.LatLng(currentPosition.latitude, currentPosition.longitude),
-        level: 5,
-      };
-      const map = new window.kakao.maps.Map(mapContainer, options);
-      keywordPlace(selectedFoodName, map, currentPosition.latitude, currentPosition.longitude);
-    }
-  }, [selectedFoodName, currentPosition]);
-
   const keywordPlace = (location, map, latitude, longitude) => {
     const ps = new window.kakao.maps.services.Places();
     const keywordOptions = {
@@ -83,6 +71,18 @@ export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
       keywordOptions
     );
   };
+
+  useEffect(() => {
+    const mapContainer = document.getElementById("map");
+    if (mapContainer && selectedFoodName && currentPosition.latitude !== null && currentPosition.longitude !== null) {
+      const options = {
+        center: new window.kakao.maps.LatLng(currentPosition.latitude, currentPosition.longitude),
+        level: 5,
+      };
+      const map = new window.kakao.maps.Map(mapContainer, options);
+      keywordPlace(selectedFoodName, map, currentPosition.latitude, currentPosition.longitude);
+    }
+  }, [selectedFoodName, currentPosition]);
 
   const displayMarker = (map, place) => {
     const marker = new window.kakao.maps.Marker({
