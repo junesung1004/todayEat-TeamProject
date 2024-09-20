@@ -17,7 +17,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   //console.log("selectedPrice", selectedPrice);
   const router = useRouter();
   const { isLogin } = useUser();
-  const [likedItems, setLikedItems] = useState({}); // 각 음식의 좋아요 상태 저장
+  const [likedItems, setLikedItems] = useState({}); // 각 음식의 좋아요 상태 저장.
   const [foodItems, setFoodItems] = useState([]);
   console.log("foodItems : ", foodItems);
 
