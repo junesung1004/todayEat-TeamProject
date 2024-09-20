@@ -74,19 +74,23 @@ export default function Page() {
 
       <section className={styles.shopContainer}>
         <article className={styles.shopWrap}>
-          {places.slice(0, visibleCount).map((item, idx) => {
-            return (
-              <div className={styles.shopDesc} key={idx}>
-                <h3>{item.place_name}</h3>
-                <div className={styles.text}>
-                  <p>{item.distance}m</p>
-                  <Link className={styles.link} href={`https://map.kakao.com/link/to/${item.place_name},${item.y},${item.x}`}>
-                    매장안내
-                  </Link>
+          {places
+            .slice()
+            .sort((a, b) => a.distance - b.distance)
+            .slice(0, visibleCount)
+            .map((item, idx) => {
+              return (
+                <div className={styles.shopDesc} key={idx}>
+                  <h3>{item.place_name}</h3>
+                  <div className={styles.text}>
+                    <p>{item.distance}m</p>
+                    <Link className={styles.link} href={`https://map.kakao.com/link/to/${item.place_name},${item.y},${item.x}`}>
+                      매장안내
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </article>
         {visibleCount < places.length && (
           <button className={styles.moreBtn} onClick={handleLoadMore}>

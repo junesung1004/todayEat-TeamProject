@@ -229,9 +229,9 @@ export default function Page() {
             <div className={styles.categoryWrap}>
               {[
                 { id: "1000000", label: "전체" },
-                { id: "8000", label: "8000원 이하" },
-                { id: "10000", label: "10000원 이하" },
-                { id: "15000", label: "15000원 이하" },
+                { id: "8000", label: "부담없이 먹기" },
+                { id: "10000", label: "딱 좋은 한끼" },
+                { id: "15000", label: "특별한 날" },
               ].map((item) => (
                 <div
                   key={item.id}

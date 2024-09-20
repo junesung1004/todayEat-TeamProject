@@ -3,22 +3,22 @@
   flex-direction: column;
   justify-content: space-around;
   width: 100%;
-  min-height: 92.6vh;
+  min-height: 93vh;
   background-color: white;
   .title {
-    margin-top: 30px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-left: 20px;
     h1 {
       letter-spacing: 0.1rem;
       font-size: 2.3rem;
       font-weight: bold;
       line-height: 2.3rem;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     p {
-      font-size: 1.5rem;
+      font-size: 1rem;
       letter-spacing: 0.1rem;
     }
   }
@@ -29,11 +29,67 @@
     justify-content: center;
     margin: 0 auto;
     .imgWrap {
-      width: 311px;
-      height: 182px;
-      border: 1px solid black;
-      margin-bottom: 50px;
-      background-color: white;
+      position: relative;
+      .dosirock {
+        position: absolute;
+        top: -310px;
+        right: -75px;
+      }
+      .dosirockback {
+        position: absolute;
+        top: -310px;
+        right: -55px;
+      }
+      .sal {
+        position: absolute;
+        top: -260px;
+        left: -120px;
+      }
+      .salback {
+        position: absolute;
+        top: -265px;
+        left: -145px;
+      }
+      .cobab {
+        position: absolute;
+        top: -200px;
+        left: -20px;
+      }
+      .cobabback {
+        position: absolute;
+        top: -200px;
+        left: -40px;
+      }
+      .cabab {
+        position: absolute;
+        top: -230px;
+        right: -130px;
+      }
+      .cababback {
+        position: absolute;
+        top: -230px;
+        right: -150px;
+      }
+      .bbang {
+        position: absolute;
+        top: -130px;
+        left: -130px;
+      }
+      .bbangback {
+        position: absolute;
+        top: -135px;
+        left: -150px;
+      }
+      .kimch {
+        position: absolute;
+        top: -130px;
+        left: 70px;
+      }
+      .kimchback {
+        position: absolute;
+        top: -130px;
+        left: 45px;
+      }
     }
     .btnWrap {
       width: 146px;
