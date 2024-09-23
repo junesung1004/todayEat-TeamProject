@@ -10,8 +10,8 @@ export default function Start() {
   return (
     <div className={styles.container}>
       <div className={styles.logoWrap}>
-        <Image src={logo} alt="로고이미지" width={90} height={90} priority />
-        <Image src={today} alt="로고이미지" width={70} height={60} priority />
+        <Image src={logo} alt="로고이미지" width={50} height={50} priority />
+        <Image src={today} alt="로고이미지" width={60} height={40} priority />
       </div>
       <StartCardSlide />
       <section className={styles.userLoginContainer}>
