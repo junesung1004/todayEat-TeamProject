@@ -96,29 +96,41 @@ export default function KakaoMap({ selectedfood, onPlaceUpdate }) {
       position: new window.kakao.maps.LatLng(place.y, place.x),
     });
 
+    // 마커 클릭 이벤트 추가
     window.kakao.maps.event.addListener(marker, "click", () => {
-      console.log("currentInfoWindow :", currentInfoWindow);
-      if (currentInfoWindow) {
-        currentInfoWindow.close();
+      // currentInfoWindow가 존재하고 현재 열린 인포윈도우가 클릭한 마커와 동일하면 닫기
+      if (currentInfoWindow && currentInfoWindow.getMap() && currentInfoWindow.getPosition().equals(marker.getPosition())) {
+        currentInfoWindow.close(); // 인포윈도우 닫기
+        currentInfoWindow = null; // currentInfoWindow 초기화
+      } else {
+        // 현재 열려있는 인포윈도우가 있으면 닫기
+        if (currentInfoWindow) {
+          currentInfoWindow.close();
+        }
+
+        // 새로운 인포윈도우 생성 및 열기
+        const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
+        const content = `
+  <div style="min-height: 100px; max-width: 340px; padding: 10px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background-color: #f9f9f9;">
+    <div style="font-size: 14px; color: #333; font-weight: bold; margin-bottom: 5px;">${place.place_name}</div>
+    <div style="font-size: 12px; color: #666; margin-bottom: 5px;">${place.road_address_name || place.address_name}</div>
+    <div style="font-size: 12px; color: #999; margin-bottom: 10px;">${place.phone || "전화번호 없음"}</div>
+    <a style="font-size: 12px; color: #007bff; text-decoration: underline;" href="https://map.kakao.com/link/to/${place.place_name},${place.y},${
+          place.x
+        }" target="_blank">매장안내</a>
+  </div>
+`;
+
+        infowindow.setContent(content); // 인포윈도우에 콘텐츠 설정
+        infowindow.open(map, marker); // 인포윈도우 열기
+        currentInfoWindow = infowindow; // 현재 열린 인포윈도우 저장
       }
-
-      const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
-      const content = `<div>
-        <a href="https://map.kakao.com/link/to/${place.place_name},${place.y},${place.x}" target="_blank">매장안내</a>
-        <div>${place.place_name}</div>
-        <div>${place.road_address_name || place.address_name}</div>
-        <div>${place.phone || ""}</div>
-      </div>`;
-
-      infowindow.setContent(content);
-      infowindow.open(map, marker);
-      currentInfoWindow = infowindow;
     });
   };
 
   return (
     <>
-      <div id="map" style={{ width: "314px", height: "149px" }}></div>
+      <div id="map" style={{ width: "314px", height: "169px" }}></div>
     </>
   );
 }
