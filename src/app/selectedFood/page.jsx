@@ -13,7 +13,7 @@ import Footer from "@/components/Footer/Footer";
 export default function Page() {
   const [foodData, setFoodData] = useState({ title: "", price: "", calories: "" });
   const [places, setPlaces] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(2); // 초기에는 3개만 보여줄 수 있는 state
+  const [visibleCount, setVisibleCount] = useState(1); // 초기에는 3개만 보여줄 수 있는 state
   const router = useRouter();
   const [foodImage, setFoodImage] = useState();
 
