@@ -36,40 +36,55 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
 
   const clickUpdateLike = async (item) => {
     if (!isLogin) {
-      setIsPopUpVisible(true); //로그인이 안 된 경우 로그인 팝업창 열기
+      setIsPopUpVisible(true); // 로그인이 안 된 경우 로그인 팝업창 열기
       return;
     }
 
-    // 좋아요 상태 토글
-    const updatedLikedItems = {
-      ...likedItems,
-      [item.id]: !likedItems[item.id], // 좋아요한 것을 배열로 담은 다음 해당 id를 설정해 특정 아이템만 좋아요 취소
-    };
-    setLikedItems(updatedLikedItems);
+    const itemId = item._id;
+    const isLiked = likedItems[itemId];
+
+    // 상태 변경 후 API 요청
+    setLikedItems((prevLikedItems) => ({
+      ...prevLikedItems,
+      [itemId]: !isLiked,
+    }));
 
     try {
-      const { title, price, calories } = item;
+      const { _id, name, average_price, calorie } = item;
 
-      if (title && price && calories) {
-        if (!likedItems[item.id]) {
-          const response = await fetch("/api/likeFood", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ title, price, calories }),
-          });
-          const data = await response.json();
-          console.log("좋아요 추가 완료", data);
+      // 데이터가 제대로 들어왔는지 확인
+      if (!_id && name && average_price && calorie) {
+        console.error("필요한 데이터가 부족합니다:", { _id, name, average_price, calorie });
+        return;
+      }
+
+      // 좋아요 추가/삭제 처리
+      if (!isLiked) {
+        const response = await fetch("/api/likeFood", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ _id, name, average_price, calorie }),
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          console.error("서버 오류:", data);
         } else {
-          const response = await fetch("/api/likeFood", {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ title }),
-          });
-          const data = await response.json();
+          console.log("좋아요 추가 완료", data);
+        }
+      } else {
+        const response = await fetch("/api/likeFood", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ _id }),
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          console.error("서버 오류:", data);
+        } else {
           console.log("좋아요 삭제 완료", data);
         }
       }
@@ -82,13 +97,13 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   useEffect(() => {
     const fetchFoodItems = async () => {
       try {
-        const response = await fetch("/api/food"); // API endpoint to fetch food items
+        const response = await fetch("/api/food");
         const data = await response.json();
 
         if (data.success) {
           const filteredFoodItem = data.data.filter((item) => selectedPrice.some((price) => item.average_price <= price));
           const filteredFoodItem2 = filteredFoodItem.filter((item) => selectedCategories.some((category) => item.category.includes(category)));
-          console.log("filteredFoodItem2 : ", filteredFoodItem2);
+          //console.log("filteredFoodItem2 : ", filteredFoodItem2);
           setFoodItems(filteredFoodItem2);
         } else {
           console.error("Failed to fetch food items");
@@ -99,7 +114,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
     };
 
     fetchFoodItems();
-  }, [selectedPrice, selectedCategories]); // Run once on mount
+  }, [selectedPrice, selectedCategories]);
 
   return (
     <>
@@ -123,7 +138,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
             className={`${styles["swiper-slide"]} ${styles[`slide${item.id}`]}`}
           >
             <h3>{item.name}</h3>
-            {<Image src={item.image} alt={item.name} priority width={304} height={330} />}
+            {/* {<Image src={item.image} alt={item.name} priority width={304} height={330} />} */}
             <div className={styles.imageDesc}>
               <div className={styles.box1}>평균가</div>
               <div className={styles.box2}>{item.average_price}원</div>
@@ -131,7 +146,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
               <div className={styles.box4}>{item.calorie}</div>
             </div>
             <div className={styles.iconWrap2}>
-              {likedItems[item.id] ? (
+              {likedItems[item._id] ? (
                 <Image onClick={() => clickUpdateLike(item)} src={blackHeart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
               ) : (
                 <Image onClick={() => clickUpdateLike(item)} src={heart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
@@ -144,8 +159,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
                     foodprice: item.average_price,
                     foodcalorie: item.calorie,
                     foodimage: item.image,
-                    // Add any other item details you want to pass
-                    foodId: item.id, // Example of passing the food item ID
+                    foodId: item.id,
                   }).toString();
                   router.push(`/selectedFood?${queryParams}`);
                 }}
