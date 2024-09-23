@@ -22,7 +22,7 @@ export default function Page() {
     tang: false,
     diet: false,
     asia: false,
-    meet: false,
+    bbq: false,
     night: false,
   });
 
@@ -82,7 +82,7 @@ export default function Page() {
         tang: checkedChange,
         diet: checkedChange,
         asia: checkedChange,
-        meet: checkedChange,
+        bbq: checkedChange,
         night: checkedChange,
       });
     } else {
@@ -205,7 +205,7 @@ export default function Page() {
                 { id: "tang", label: "찜, 탕, 찌개" },
                 { id: "diet", label: "다이어트식" },
                 { id: "asia", label: "아시안" },
-                { id: "meet", label: "고기, 구이" },
+                { id: "bbq", label: "고기, 구이" },
                 { id: "night", label: "야식" },
               ].map((item) => (
                 <div

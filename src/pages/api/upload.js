@@ -29,7 +29,7 @@ const uploadHandler = async (req, res) => {
     readStream.pipe(uploadStream);
 
     uploadStream.on("finish", async () => {
-      const fileUrl = `http://localhost:3000/api/files/${uploadStream.id}`;
+      const fileUrl = `https://todayeatfoods.netlify.app/api/files/${uploadStream.id}`;
 
       // 이미지 URL과 추가 정보를 데이터베이스에 저장
       const imageData = {
