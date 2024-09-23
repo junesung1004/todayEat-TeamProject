@@ -49,7 +49,7 @@ export default function Page() {
   return (
     <div className={styles.container}>
       <div className={styles.imgWrap}>
-        <Image src={foodImage} alt={foodData.title} priority width={360} height={175} />
+        <Image src={foodImage} alt={foodData.title} priority width={360} height={205} />
       </div>
 
       <div className={styles.foodDescContainer}>
