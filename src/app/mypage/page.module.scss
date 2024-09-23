@@ -54,6 +54,7 @@
     margin: 0 auto;
     border-radius: 8px;
     margin-bottom: 100px;
+    position: relative;
     .likeWrap {
       cursor: pointer;
       display: flex;
@@ -99,11 +100,12 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    position: relative;
-    top: -100px;
+    position: absolute;
+    top: 220px;
+    left: 25px;
     gap: 10px;
     width: 314px;
-    height: 352px;
+    height: 312px;
     overflow: auto;
     margin: 0 auto;
     margin-bottom: 30px;
@@ -128,7 +130,7 @@
   .editBtnWrap {
     position: absolute;
     left: 138px;
-    top: 80%;
+    top: 550px;
     width: 85px;
     height: 40px;
     background-color: #ed4c00;
