@@ -11,11 +11,10 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 
-// import img1 from "../../public/images/1.jpg";
-// import img2 from "../../public/images/2.jpg";
-// import img3 from "../../public/images/3.jpg";
-// import img4 from "../../public/images/4.jpg";
-// import img5 from "../../public/images/5.jpg";
+import bg1 from "@/../../public/preview/1.gif";
+import bg2 from "@/../../public/preview/1.png";
+import bg3 from "@/../../public/preview/2.png";
+import bg4 from "@/../../public/preview/3.png";
 
 export default function StartCardSlide() {
   return (
@@ -24,16 +23,19 @@ export default function StartCardSlide() {
       loop={true}
       slidesPerView={1} // 두 개의 슬라이드를 보이도록 설정
       centeredSlides={true} // 슬라이드 중앙 정렬
-      modules={[Pagination]}
-      pagination={{ clickable: true }}
     >
       <SwiperSlide className={`${styles["swiper-slide"]} ${styles["slide-1"]}`}>
-        {/* <Image src={img1} alt="이미지 슬라이드 1" priority width={320} height={400} /> */}1
+        <Image src={bg1} alt="이미지 슬라이드 1" priority width={280} height={400} />
       </SwiperSlide>
-      <SwiperSlide className={`${styles["swiper-slide"]} ${styles["slide-2"]}`}>2</SwiperSlide>
-      <SwiperSlide className={`${styles["swiper-slide"]} ${styles["slide-3"]}`}>3</SwiperSlide>
-      <SwiperSlide className={`${styles["swiper-slide"]} ${styles["slide-4"]}`}>4</SwiperSlide>
-      <SwiperSlide className={`${styles["swiper-slide"]} ${styles["slide-5"]}`}>5</SwiperSlide>
+      <SwiperSlide className={`${styles["swiper-slide"]} ${styles["slide-2"]}`}>
+        <Image src={bg2} alt="이미지 슬라이드 2" priority width={280} height={400} />
+      </SwiperSlide>
+      <SwiperSlide className={`${styles["swiper-slide"]} ${styles["slide-3"]}`}>
+        <Image src={bg3} alt="이미지 슬라이드 3" priority width={280} height={400} />
+      </SwiperSlide>
+      <SwiperSlide className={`${styles["swiper-slide"]} ${styles["slide-4"]}`}>
+        <Image src={bg4} alt="이미지 슬라이드 1" priority width={280} height={400} />
+      </SwiperSlide>
     </Swiper>
   );
 }

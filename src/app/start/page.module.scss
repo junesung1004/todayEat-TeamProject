@@ -4,8 +4,13 @@
   width: 100%;
   min-height: 100vh;
   justify-content: center;
-  .cardWrap {
-    margin-bottom: 50px;
+  background-color: white;
+  .logoWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
   }
   .userLoginContainer {
     display: flex;
