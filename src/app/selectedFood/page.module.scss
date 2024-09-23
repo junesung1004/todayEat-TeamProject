@@ -16,7 +16,7 @@
   .foodDescContainer {
     display: flex;
     flex-direction: column;
-    padding: 20px 0 0 20px;
+    padding: 10px 0 0 20px;
     margin-bottom: 20px;
     h3 {
       margin-bottom: 10px;
@@ -44,10 +44,10 @@
   }
 
   .shopDistance {
-    padding: 0 0 25px 25px;
+    padding: 0 25px 0px 25px;
     p {
       border-bottom: 1px solid#CCCCCC;
-      padding-bottom: 20px;
+      padding-bottom: 10px;
       strong {
         color: #eb4726;
         font-weight: 800;
@@ -56,7 +56,7 @@
   }
 
   .shopContainer {
-    padding: 30px 20px;
+    padding: 10px 20px;
     .shopWrap {
       display: flex;
       flex-direction: column;
