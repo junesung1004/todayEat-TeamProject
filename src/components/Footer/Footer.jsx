@@ -11,7 +11,7 @@ export default function Footer() {
   const router = useRouter();
 
   const { isLogin } = useUser();
-  console.log("isLogin : ", isLogin);
+  //console.log("isLogin : ", isLogin);
 
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
 

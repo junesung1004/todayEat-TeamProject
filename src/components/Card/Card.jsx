@@ -10,6 +10,7 @@ import styles from "./Card.module.scss";
 import { useUser } from "@/context/userContext";
 import LoginPopUp from "../LoginPopUp/LoginPopUp";
 import { useRouter } from "next/navigation";
+import DisLikePopUp from "../DisLikePopUp/DisLikePopUp";
 
 export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -19,7 +20,9 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   const { isLogin } = useUser();
   const [likedItems, setLikedItems] = useState({}); // 각 음식의 좋아요 상태 저장.
   const [foodItems, setFoodItems] = useState([]);
-  console.log("foodItems : ", foodItems);
+  //console.log("foodItems : ", foodItems);
+
+  const [isDisLikePopUpVisible, setIsDisLikePopUpVisible] = useState(false);
 
   useEffect(() => {
     const query = window.location.search;
@@ -50,11 +53,11 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
     }));
 
     try {
-      const { _id, name, average_price, calorie } = item;
+      const { _id, name, url } = item;
 
       // 데이터가 제대로 들어왔는지 확인
-      if (!_id && name && average_price && calorie) {
-        console.error("필요한 데이터가 부족합니다:", { _id, name, average_price, calorie });
+      if (!_id && name && url) {
+        console.error("필요한 데이터가 부족합니다:", { _id, name, url });
         return;
       }
 
@@ -65,7 +68,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ _id, name, average_price, calorie }),
+          body: JSON.stringify({ _id, name, url }),
         });
         const data = await response.json();
         if (!response.ok) {
@@ -115,6 +118,11 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
 
     fetchFoodItems();
   }, [selectedPrice, selectedCategories]);
+
+  const clickPopUpHandle = () => {
+    console.log("클릭");
+    setIsDisLikePopUpVisible((prev) => !prev);
+  };
 
   return (
     <>
@@ -171,10 +179,11 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
                 className={styles.icon}
               />
             </div>
-            <Image className={styles.descBtn} src={frame} alt="더보기 로고" priority width={32} height={32} />
+            <Image onClick={() => clickPopUpHandle()} className={styles.descBtn} src={frame} alt="더보기 로고" priority width={32} height={32} />
           </SwiperSlide>
         ))}
       </Swiper>
+      {isDisLikePopUpVisible && <DisLikePopUp onClose={() => setIsDisLikePopUpVisible(false)} />}
     </>
   );
 }
