@@ -28,7 +28,7 @@ export default function DisLikePopUp({ onClose }) {
       signIn("kakao", { callbackUrl: `/home?login=true` });
       return;
     } else {
-      alert("업데이트 할 예정입니다^^;;");
+      alert("comming soon ^^");
     }
   };
 
