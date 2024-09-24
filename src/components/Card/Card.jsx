@@ -11,6 +11,7 @@ import { useUser } from "@/context/userContext";
 import LoginPopUp from "../LoginPopUp/LoginPopUp";
 import { useRouter } from "next/navigation";
 import DisLikePopUp from "../DisLikePopUp/DisLikePopUp";
+import { getSession } from "next-auth/react";
 
 export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -18,6 +19,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   //console.log("selectedPrice", selectedPrice);
   const router = useRouter();
   const { isLogin } = useUser();
+  console.log("isLogin : ", isLogin);
   const [likedItems, setLikedItems] = useState({}); // 각 음식의 좋아요 상태 저장.
   const [foodItems, setFoodItems] = useState([]);
   //console.log("foodItems : ", foodItems);
@@ -53,11 +55,11 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
     }));
 
     try {
-      const { _id, name, url } = item;
+      const { _id, name, image } = item;
 
       // 데이터가 제대로 들어왔는지 확인
-      if (!_id && name && url) {
-        console.error("필요한 데이터가 부족합니다:", { _id, name, url });
+      if (!_id && name && image) {
+        console.error("필요한 데이터가 부족합니다:", { _id, name, image });
         return;
       }
 
@@ -68,7 +70,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ _id, name, url }),
+          body: JSON.stringify({ _id, name, image }),
         });
         const data = await response.json();
         if (!response.ok) {
