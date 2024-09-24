@@ -25,6 +25,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   //console.log("foodItems : ", foodItems);
 
   const [isDisLikePopUpVisible, setIsDisLikePopUpVisible] = useState(false);
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     const query = window.location.search;
@@ -121,8 +122,9 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
     fetchFoodItems();
   }, [selectedPrice, selectedCategories]);
 
-  const clickPopUpHandle = () => {
+  const clickPopUpHandle = (item) => {
     console.log("클릭");
+    setSelected(item);
     setIsDisLikePopUpVisible((prev) => !prev);
   };
 
@@ -148,7 +150,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
             className={`${styles["swiper-slide"]} ${styles[`slide${item.id}`]}`}
           >
             <h3>{item.name}</h3>
-            {<Image src={item.image} alt={item.name} priority width={304} height={330} />}
+            {/* {<Image src={item.image} alt={item.name} priority width={304} height={330} />} */}
             <div className={styles.imageDesc}>
               <div className={styles.box1}>평균가</div>
               <div className={styles.box2}>{item.average_price}원</div>
@@ -181,11 +183,11 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
                 className={styles.icon}
               />
             </div>
-            <Image onClick={() => clickPopUpHandle()} className={styles.descBtn} src={frame} alt="더보기 로고" priority width={32} height={32} />
+            <Image onClick={() => clickPopUpHandle(item)} className={styles.descBtn} src={frame} alt="더보기 로고" priority width={32} height={32} />
           </SwiperSlide>
         ))}
       </Swiper>
-      {isDisLikePopUpVisible && <DisLikePopUp onClose={() => setIsDisLikePopUpVisible(false)} />}
+      {isDisLikePopUpVisible && <DisLikePopUp onClose={() => setIsDisLikePopUpVisible(false)} foodId={selected?._id} foodName={selected?.name} foodImage={selected?.image} />}
     </>
   );
 }

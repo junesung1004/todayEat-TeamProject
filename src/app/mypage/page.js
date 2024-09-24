@@ -22,8 +22,9 @@ export default function Page() {
   const [user, setUser] = useState(null);
   const { isLogin, setIsLogin } = useUser();
 
-  // 새로운 상태 변수 추가
   const [likedFoods, setLikedFoods] = useState([]);
+
+  const [disLikedFoods, setDisLikedFoods] = useState([]);
   console.log("likedFoods", likedFoods);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function Page() {
     fetchSession();
   }, []);
 
+  //좋아하는 음식 데이터베이스로부터 가져오는 코드
   useEffect(() => {
     const getFetchData = async () => {
       if (!user) return; // 사용자 세션이 없으면 반환
@@ -45,6 +47,25 @@ export default function Page() {
         }
         const data = await response.json();
         setLikedFoods(data.data); // 받은 데이터로 상태 업데이트
+      } catch (error) {
+        console.error("좋아요 음식 목록 가져오기 에러 :", error);
+      }
+    };
+    getFetchData();
+  }, [user]); // user가 변경될 때마다 데이터 가져오기
+
+  //싫어하는 음식 데이터베이스로부터 가져오는 코드
+  useEffect(() => {
+    const getFetchData = async () => {
+      if (!user) return; // 사용자 세션이 없으면 반환
+
+      try {
+        const response = await fetch("/api/disLikeFood"); // 좋아요 음식 API 호출
+        if (!response.ok) {
+          throw new Error("서버 오류");
+        }
+        const data = await response.json();
+        setDisLikedFoods(data.data); // 받은 데이터로 상태 업데이트
       } catch (error) {
         console.error("좋아요 음식 목록 가져오기 에러 :", error);
       }
@@ -102,7 +123,7 @@ export default function Page() {
             좋아요<span className={styles.like}>{likedFoods.length}</span>
           </div>
           <div onClick={() => clickDisLikeBtn()} className={`${styles.disLikeWrap} ${isDisLikeChecked ? styles.disLikeChecked : ""}`}>
-            안볼래요<span className={styles.disLike}>5</span>
+            안볼래요<span className={styles.disLike}>{disLikedFoods.length}</span>
           </div>
         </article>
       </div>
@@ -119,11 +140,11 @@ export default function Page() {
           })}
 
         {isDisLikeChecked &&
-          mock2.map((el, idx) => {
+          disLikedFoods.map((food, idx) => {
             return (
               <article className={styles.imgWrap} key={idx}>
-                <div>이미지</div>
-                <p>음식이름</p>
+                <Image className={styles.img} src={food.image} alt="싫어요 음식" priority />
+                <p>{food.name}</p>
               </article>
             );
           })}
