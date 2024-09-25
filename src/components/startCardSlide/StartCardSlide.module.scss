@@ -3,36 +3,17 @@
   height: 380px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   cursor: grab;
-  // .slide-1 {
-  //   background-color: aqua;
-  // }
-
-  // .slide-2 {
-  //   background-color: tomato;
-  // }
-
-  // .slide-3 {
-  //   background-color: pink;
-  // }
-
-  // .slide-4 {
-  //   background-color: yellow;
-  // }
-
-  // .slide-5 {
-  //   background-color: blueviolet;
-  // }
   .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%; /* 부모 컨테이너에 맞추기 위해 100%로 설정 */
+    height: 100%;
     border: 1px solid #aaaaaa;
     .swiper-slide img {
-      width: 100%; /* 부모 컨테이너에 맞추기 위해 100%로 설정 */
-      height: 100%; /* 비율 유지 */
-      object-fit: cover; /* 필요에 따라 cover 또는 contain */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 }
