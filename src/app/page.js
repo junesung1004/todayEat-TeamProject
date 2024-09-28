@@ -35,11 +35,11 @@ export default function App() {
     fetchFoodItems();
   }, []);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     router.push("/start");
-  //   }, 2000);
-  // }, [router]);
+  useEffect(() => {
+    setTimeout(() => {
+      router.push("/start");
+    }, 2000);
+  }, [router]);
 
   return (
     <motion.div

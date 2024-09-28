@@ -25,6 +25,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   //console.log("foodItems : ", foodItems);
   const [isDisLikePopUpVisible, setIsDisLikePopUpVisible] = useState(false);
   const [selected, setSelected] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   //페이지 로드 시 사용자별로 싫어요한 음식 가져오기
   useEffect(() => {
@@ -150,6 +151,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   //데이터베이스 음식 정보 가져오기
   useEffect(() => {
     const fetchFoodItems = async () => {
+      setLoading(true); // 데이터 로드 시작 시 로딩 상태 true
       try {
         const response = await fetch("/api/food");
         const data = await response.json();
@@ -167,6 +169,8 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
         }
       } catch (error) {
         console.error("Error fetching food items:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -178,6 +182,10 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
     setSelected(item);
     setIsDisLikePopUpVisible((prev) => !prev);
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // 로딩 중에는 로딩 메시지를 표시
+  }
 
   return (
     <>
