@@ -173,7 +173,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
         }}
       >
         {foodItems
-          .filter((item) => !dislikedItems.includes(item._id)) // 싫어요한 아이템 필터링
+          .filter((item) => dislikedItems.includes(item._id)) // 싫어요한 아이템 필터링
           .map((item) => (
             <SwiperSlide
               key={item._id}
