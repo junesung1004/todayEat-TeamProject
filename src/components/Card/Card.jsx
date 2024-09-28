@@ -28,28 +28,30 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   //페이지 로드 시 사용자별로 좋아요 상태 불러오기
   useEffect(() => {
     const fetchLikedItems = async () => {
-      if (!isLogin) return;
-
       try {
-        const response = await fetch(`/api/likeFood?userId=${userId}`);
+        const response = await fetch("/api/likeFood");
         const data = await response.json();
 
-        if (response.ok && data.success) {
-          const likedItemsMap = data.likedItems.reduce((acc, item) => {
-            acc[item._id] = true; // 좋아요된 아이템들을 true로 표시
-            return acc;
-          }, {});
-          setLikedItems(likedItemsMap);
-        } else {
-          console.error("좋아요 아이템 fetch 에러", data);
+        // 데이터가 없는 경우 대비하여 기본값 설정
+        if (!data || !data.success || !data.data) {
+          console.error("좋아하는 음식 데이터를 가져오지 못했습니다:", data);
+          return;
         }
+
+        // likedItems를 업데이트할 때 데이터가 유효한지 확인
+        const likedItemsFromDB = data.data.reduce((acc, item) => {
+          acc[item._id] = true;
+          return acc;
+        }, {});
+
+        setLikedItems(likedItemsFromDB);
       } catch (error) {
-        console.error("error fetching liked items", error);
+        console.error("Error fetching liked items:", error);
       }
     };
-    fetchLikedItems();
-  }, [isLogin, userId]);
 
+    fetchLikedItems();
+  }, []);
   useEffect(() => {
     const query = window.location.search;
 
