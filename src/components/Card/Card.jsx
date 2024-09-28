@@ -109,7 +109,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
       const { _id, name, image } = item;
 
       // 데이터가 제대로 들어왔는지 확인
-      if (!_id && name && image) {
+      if (!_id || !name || !image) {
         console.error("필요한 데이터가 부족합니다:", { _id, name, image });
         return;
       }
@@ -218,7 +218,15 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
                   <Image onClick={() => clickUpdateLike(item)} src={heart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
                 )
               ) : (
-                <Image src={heart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
+                <Image
+                  onClick={() => setIsPopUpVisible(true)} // 비로그인 상태에서 클릭 시 로그인 팝업 열기
+                  src={heart}
+                  alt="하트로고"
+                  priority
+                  width={24}
+                  height={24}
+                  className={styles.icon}
+                />
               )}
               <div className={styles.line}>|</div>
               <Image
