@@ -30,7 +30,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   useEffect(() => {
     const fetchDisLikedItems = async () => {
       try {
-        const response = await fetch("/api/dislikeFood");
+        const response = await fetch("/api/disLikeFood");
         const data = await response.json();
 
         if (data.success) {
