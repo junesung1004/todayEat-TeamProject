@@ -29,6 +29,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   //페이지 로드 시 사용자별로 싫어요한 음식 가져오기
   useEffect(() => {
     const fetchDisLikedItems = async () => {
+      if (!isLogin) return;
       try {
         const response = await fetch("/api/disLikeFood");
         const data = await response.json();
@@ -49,6 +50,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   //페이지 로드 시 사용자별로 좋아요 상태 불러오기
   useEffect(() => {
     const fetchLikedItems = async () => {
+      if (!isLogin) return;
       try {
         const response = await fetch("/api/likeFood");
         const data = await response.json();
