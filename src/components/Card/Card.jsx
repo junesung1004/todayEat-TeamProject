@@ -27,6 +27,9 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   const [selected, setSelected] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [loadedImages, setLoadedImages] = useState(0); // 로드된 이미지 수 추적
+  const totalImages = foodItems.length; // 총 이미지 수
+
   //페이지 로드 시 사용자별로 싫어요한 음식 가져오기
   useEffect(() => {
     const fetchDisLikedItems = async () => {
@@ -183,8 +186,20 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
     setIsDisLikePopUpVisible((prev) => !prev);
   };
 
+  // 모든 이미지 로드가 완료되었는지 확인
+  const handleImageLoad = () => {
+    setLoadedImages((prev) => prev + 1);
+  };
+
+  // 로딩 상태 업데이트
+  useEffect(() => {
+    if (loadedImages === totalImages && totalImages > 0) {
+      setLoading(false);
+    }
+  }, [loadedImages, totalImages]);
+
   if (loading) {
-    return <div>Loading...</div>; // 로딩 중에는 로딩 메시지를 표시
+    return <div>Loading...</div>; // 로딩 중 메시지 또는 스피너
   }
 
   return (
@@ -209,7 +224,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
             className={`${styles["swiper-slide"]} ${styles[`slide${item.id}`]}`}
           >
             <h3>{item.name}</h3>
-            {<Image src={item.image} alt={item.name} priority width={304} height={330} />}
+            {<Image src={item.image} onLoad={handleImageLoad} alt={item.name} priority width={304} height={330} />}
             <div className={styles.imageDesc}>
               <div className={styles.box1}>평균가</div>
               <div className={styles.box2}>{item.average_price}원</div>
