@@ -209,10 +209,14 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
               <div className={styles.box4}>{item.calorie}</div>
             </div>
             <div className={styles.iconWrap2}>
-              {likedItems[item._id] ? (
-                <Image onClick={() => clickUpdateLike(item)} src={blackHeart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
+              {isLogin ? (
+                likedItems[item._id] ? (
+                  <Image onClick={() => clickUpdateLike(item)} src={blackHeart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
+                ) : (
+                  <Image onClick={() => clickUpdateLike(item)} src={heart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
+                )
               ) : (
-                <Image onClick={() => clickUpdateLike(item)} src={heart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
+                <Image src={heart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
               )}
               <div className={styles.line}>|</div>
               <Image
