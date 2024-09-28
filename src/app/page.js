@@ -14,6 +14,7 @@ export default function App() {
   const router = useRouter();
 
   const [foodItems, setFoodItems] = useState([]);
+  console.log("foodItems : ", foodItems);
 
   useEffect(() => {
     const fetchFoodItems = async () => {
@@ -34,11 +35,11 @@ export default function App() {
     fetchFoodItems();
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      router.push("/start");
-    }, 2000);
-  }, [router]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     router.push("/start");
+  //   }, 2000);
+  // }, [router]);
 
   return (
     <motion.div
