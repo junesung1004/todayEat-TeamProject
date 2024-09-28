@@ -23,7 +23,7 @@ export const authOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       try {
         const client = await connectDB;
         const db = client.db("todayEatTeamProject");

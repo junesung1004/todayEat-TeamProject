@@ -16,16 +16,39 @@ import { getSession } from "next-auth/react";
 export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState([]);
-  //console.log("selectedPrice", selectedPrice);
   const router = useRouter();
-  const { isLogin } = useUser();
+  const { isLogin, userId } = useUser();
   console.log("isLogin : ", isLogin);
   const [likedItems, setLikedItems] = useState({}); // 각 음식의 좋아요 상태 저장.
   const [foodItems, setFoodItems] = useState([]);
   //console.log("foodItems : ", foodItems);
-
   const [isDisLikePopUpVisible, setIsDisLikePopUpVisible] = useState(false);
   const [selected, setSelected] = useState(null);
+
+  //페이지 로드 시 사용자별로 좋아요 상태 불러오기
+  useEffect(() => {
+    const fetchLikedItems = async () => {
+      if (!isLogin) return;
+
+      try {
+        const response = await fetch(`/api/likeFood?userId=${userId}`);
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          const likedItemsMap = data.likedItems.reduce((acc, item) => {
+            acc[item._id] = true; // 좋아요된 아이템들을 true로 표시
+            return acc;
+          }, {});
+          setLikedItems(likedItemsMap);
+        } else {
+          console.error("좋아요 아이템 fetch 에러", data);
+        }
+      } catch (error) {
+        console.error("error fetching liked items", error);
+      }
+    };
+    fetchLikedItems();
+  }, [isLogin, userId]);
 
   useEffect(() => {
     const query = window.location.search;
@@ -71,7 +94,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ _id, name, image }),
+          body: JSON.stringify({ _id, name, image, userId }),
         });
         const data = await response.json();
         if (!response.ok) {
@@ -85,7 +108,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ _id }),
+          body: JSON.stringify({ _id, userId }),
         });
         const data = await response.json();
         if (!response.ok) {
@@ -150,7 +173,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
             className={`${styles["swiper-slide"]} ${styles[`slide${item.id}`]}`}
           >
             <h3>{item.name}</h3>
-            {<Image src={item.image} alt={item.name} priority width={304} height={330} />}
+            {/* {<Image src={item.image} alt={item.name} priority width={304} height={330} />} */}
             <div className={styles.imageDesc}>
               <div className={styles.box1}>평균가</div>
               <div className={styles.box2}>{item.average_price}원</div>

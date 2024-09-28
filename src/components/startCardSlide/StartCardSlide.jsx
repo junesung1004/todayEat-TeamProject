@@ -12,9 +12,9 @@ import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 
 import bg1 from "@/../../public/images/mainslide1.png";
-import bg2 from "@/../../public/images/mainslide2.png";
+import bg2 from "@/../../public/preview/5.png";
 import bg3 from "@/../../public/images/mainslide3.png";
-import bg4 from "@/../../public/preview/1.gif";
+import bg4 from "@/../../public/preview/4.png";
 
 export default function StartCardSlide() {
   return (
@@ -35,7 +35,7 @@ export default function StartCardSlide() {
         <Image src={bg4} alt="이미지 슬라이드 3" priority width={280} height={400} />
       </SwiperSlide>
       <SwiperSlide className={`${styles["swiper-slide"]} ${styles["slide-2"]}`}>
-        <Image src={bg2} alt="이미지 슬라이드 2" priority width={280} height={400} />
+        <Image src={bg2} alt="이미지 슬라이드 2" priority width={282} height={400} />
       </SwiperSlide>
       <SwiperSlide className={`${styles["swiper-slide"]} ${styles["slide-3"]}`}>
         <Image src={bg3} alt="이미지 슬라이드 3" priority width={280} height={400} />
