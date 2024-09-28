@@ -26,6 +26,26 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
   const [isDisLikePopUpVisible, setIsDisLikePopUpVisible] = useState(false);
   const [selected, setSelected] = useState(null);
 
+  //페이지 로드 시 사용자별로 싫어요한 음식 가져오기
+  useEffect(() => {
+    const fetchDisLikedItems = async () => {
+      try {
+        const response = await fetch("/api/dislikeFood");
+        const data = await response.json();
+
+        if (data.success) {
+          const disLikedItemsFromDB = data.data.map((item) => item._id);
+          setDislikedItems(disLikedItemsFromDB);
+        } else {
+          console.error("싫어요한 음식 데이터를 가져오지 못했습니다:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching disliked items:", error);
+      }
+    };
+    fetchDisLikedItems();
+  }, []);
+
   //페이지 로드 시 사용자별로 좋아요 상태 불러오기
   useEffect(() => {
     const fetchLikedItems = async () => {
@@ -54,7 +74,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
     fetchLikedItems();
   }, []);
 
-  //필터링 설정 후 아이템 가져오는 코드
+  //카테고리 필터링 코드
   useEffect(() => {
     const query = window.location.search;
 
@@ -67,11 +87,6 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
     setSelectedCategories(categories ? categories.split(",") : []);
     setSelectedPrice(price ? price.split(",") : []);
   }, []);
-
-  //싫어요 음식 업데이트 핸들러
-  const handleDisLike = (item) => {
-    setDislikedItems((prevDisLikedItems) => [...prevDisLikedItems, item._id]);
-  };
 
   const clickUpdateLike = async (item) => {
     if (!isLogin) {
@@ -140,10 +155,13 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
         const data = await response.json();
 
         if (data.success) {
-          const filteredFoodItem = data.data.filter((item) => selectedPrice.some((price) => item.average_price <= price));
-          const filteredFoodItem2 = filteredFoodItem.filter((item) => selectedCategories.some((category) => item.category.includes(category)));
-          //console.log("filteredFoodItem2 : ", filteredFoodItem2);
-          setFoodItems(filteredFoodItem2);
+          const filteredFoodItems = data.data.filter(
+            (item) =>
+              selectedPrice.some((price) => item.average_price <= price) &&
+              selectedCategories.some((category) => item.category.includes(category)) &&
+              !dislikedItems.includes(item._id) // 싫어요한 아이템 필터링
+          );
+          setFoodItems(filteredFoodItems);
         } else {
           console.error("Failed to fetch food items");
         }
@@ -153,7 +171,7 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
     };
 
     fetchFoodItems();
-  }, [selectedPrice, selectedCategories]);
+  }, [selectedPrice, selectedCategories, dislikedItems]);
 
   const clickPopUpHandle = (item) => {
     console.log("클릭");
@@ -172,65 +190,55 @@ export default function Card({ onSlideChange, selectedFood, setIsPopUpVisible })
           const currentIndex = swiper.realIndex;
         }}
       >
-        {foodItems
-          .filter((item) => dislikedItems.includes(item._id)) // 싫어요한 아이템 필터링
-          .map((item) => (
-            <SwiperSlide
-              key={item._id}
-              style={{
-                backgroundColor: item.color,
-                width: "304px",
-                height: "330px",
-              }}
-              className={`${styles["swiper-slide"]} ${styles[`slide${item.id}`]}`}
-            >
-              <h3>{item.name}</h3>
-              {<Image src={item.image} alt={item.name} priority width={304} height={330} />}
-              <div className={styles.imageDesc}>
-                <div className={styles.box1}>평균가</div>
-                <div className={styles.box2}>{item.average_price}원</div>
-                <div className={styles.box3}>칼로리</div>
-                <div className={styles.box4}>{item.calorie}</div>
-              </div>
-              <div className={styles.iconWrap2}>
-                {likedItems[item._id] ? (
-                  <Image onClick={() => clickUpdateLike(item)} src={blackHeart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
-                ) : (
-                  <Image onClick={() => clickUpdateLike(item)} src={heart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
-                )}
-                <div className={styles.line}>|</div>
-                <Image
-                  onClick={() => {
-                    const queryParams = new URLSearchParams({
-                      foodname: item.name,
-                      foodprice: item.average_price,
-                      foodcalorie: item.calorie,
-                      foodimage: item.image,
-                      foodId: item.id,
-                    }).toString();
-                    router.push(`/selectedFood?${queryParams}`);
-                  }}
-                  src={location}
-                  alt="지도모양 아이콘"
-                  priority
-                  width={24}
-                  height={24}
-                  className={styles.icon}
-                />
-              </div>
-              <Image onClick={() => clickPopUpHandle(item)} className={styles.descBtn} src={frame} alt="더보기 로고" priority width={32} height={32} />
-            </SwiperSlide>
-          ))}
+        {foodItems.map((item) => (
+          <SwiperSlide
+            key={item._id}
+            style={{
+              backgroundColor: item.color,
+              width: "304px",
+              height: "330px",
+            }}
+            className={`${styles["swiper-slide"]} ${styles[`slide${item.id}`]}`}
+          >
+            <h3>{item.name}</h3>
+            {<Image src={item.image} alt={item.name} priority width={304} height={330} />}
+            <div className={styles.imageDesc}>
+              <div className={styles.box1}>평균가</div>
+              <div className={styles.box2}>{item.average_price}원</div>
+              <div className={styles.box3}>칼로리</div>
+              <div className={styles.box4}>{item.calorie}</div>
+            </div>
+            <div className={styles.iconWrap2}>
+              {likedItems[item._id] ? (
+                <Image onClick={() => clickUpdateLike(item)} src={blackHeart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
+              ) : (
+                <Image onClick={() => clickUpdateLike(item)} src={heart} alt="하트로고" priority width={24} height={24} className={styles.icon} />
+              )}
+              <div className={styles.line}>|</div>
+              <Image
+                onClick={() => {
+                  const queryParams = new URLSearchParams({
+                    foodname: item.name,
+                    foodprice: item.average_price,
+                    foodcalorie: item.calorie,
+                    foodimage: item.image,
+                    foodId: item.id,
+                  }).toString();
+                  router.push(`/selectedFood?${queryParams}`);
+                }}
+                src={location}
+                alt="지도모양 아이콘"
+                priority
+                width={24}
+                height={24}
+                className={styles.icon}
+              />
+            </div>
+            <Image onClick={() => clickPopUpHandle(item)} className={styles.descBtn} src={frame} alt="더보기 로고" priority width={32} height={32} />
+          </SwiperSlide>
+        ))}
       </Swiper>
-      {isDisLikePopUpVisible && (
-        <DisLikePopUp
-          onClose={() => setIsDisLikePopUpVisible(false)}
-          foodId={selected?._id}
-          foodName={selected?.name}
-          foodImage={selected?.image}
-          onDisLike={() => handleDisLike(selected)}
-        />
-      )}
+      {isDisLikePopUpVisible && <DisLikePopUp onClose={() => setIsDisLikePopUpVisible(false)} foodId={selected?._id} foodName={selected?.name} foodImage={selected?.image} />}
     </>
   );
 }
