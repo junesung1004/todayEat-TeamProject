@@ -1,8 +1,6 @@
-import { useUser } from "@/context/userContext";
 import { connectDB } from "@/utils/dbConnect";
 import NextAuth from "next-auth/next";
 import KakaoProvider from "next-auth/providers/kakao";
-import { signIn } from "next-auth/react";
 
 //npm i next-auth
 
@@ -25,7 +23,7 @@ export const authOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       try {
         const client = await connectDB;
         const db = client.db("todayEatTeamProject");
@@ -52,7 +50,7 @@ export const authOptions = {
       session.user = token.user;
       return session;
     },
-    //jwt 토큰 생성 시 호출되는 콜백 함수
+    //jwt 토큰 생성 시 호출되는 콜백 함수.
     async jwt({ token, user }) {
       if (user) {
         token.user = user;

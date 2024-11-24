@@ -3,7 +3,8 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  min-height: 92.5vh;
+  justify-content: space-between;
+  min-height: 100vh;
   .userInfoContainer {
     padding: 40px 0 10px 15px;
     h2 {
@@ -53,6 +54,7 @@
     margin: 0 auto;
     border-radius: 8px;
     margin-bottom: 100px;
+    position: relative;
     .likeWrap {
       cursor: pointer;
       display: flex;
@@ -98,24 +100,53 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    // justify-content: center;
+    justify-content: center;
+    position: absolute;
+    top: 220px;
+    left: 25px;
     gap: 10px;
     width: 314px;
-    height: 352px;
+    height: 312px;
     overflow: auto;
     margin: 0 auto;
     margin-bottom: 30px;
     .imgWrap {
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      width: 98px;
-      height: 147px;
-      border: 1px solid black;
-      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25); /* 그림자 효과를 더 부드럽고 뚜렷하게 */
+      width: 140px; /* 약간 넓게 */
+      height: 150px; /* 높이도 살짝 늘림 */
+      border: 1px solid #e0e0e0; /* 부드러운 경계 색상 */
+      border-radius: 10px; /* 둥글게 더 부드럽게 */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      transition: transform 0.2s ease; /* hover 효과 추가 */
+
+      &:hover {
+        transform: translateY(-5px); /* 마우스를 올리면 위로 약간 올라가는 효과 */
+      }
+
+      .img {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px; /* 이미지도 둥글게 */
+        object-fit: cover; /* 이미지 비율을 유지하면서 잘라냄 */
+      }
+
       p {
+        position: absolute;
+        bottom: 5px; /* 위치 조정 */
+        left: 50%; /* 가운데 정렬을 위해 */
+        transform: translateX(-50%); /* 가운데 정렬을 위한 트랜스폼 */
+        color: white;
+        font-weight: bolder;
+        text-align: center; /* 텍스트 가운데 정렬 */
+        background: rgba(0, 0, 0, 0.5); /* 반투명 배경으로 가독성 향상 */
+        padding: 4px 8px; /* 패딩 추가 */
+        border-radius: 5px; /* 배경도 둥글게 */
       }
     }
   }
@@ -123,26 +154,10 @@
     display: none; /* Chrome, Safari, Edge, Opera */
   }
 
-  .footerContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 20px;
-    border-top: 1px solid #dedede;
-    height: 36px;
-    gap: 150px;
-    button {
-      background-color: inherit;
-    }
-    .icon {
-      width: 24px;
-      height: 24px;
-    }
-  }
   .editBtnWrap {
     position: absolute;
     left: 138px;
-    top: 80%;
+    top: 550px;
     width: 85px;
     height: 40px;
     background-color: #ed4c00;

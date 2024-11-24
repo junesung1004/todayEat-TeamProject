@@ -7,17 +7,23 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
 import { useUser } from "@/context/userContext";
+import Image from "next/image";
+import Footer from "@/components/Footer/Footer";
 
 export default function Page() {
   const [foodData, setFoodData] = useState({ title: "", price: "", calories: "" });
-  console.log("foodData : ", foodData);
   const [places, setPlaces] = useState([]);
-  console.log("places : ", places);
-  const [visibleCount, setVisibleCount] = useState(2); // 초기에는 3개만 보여줄 수 있는 state
+  const [visibleCount, setVisibleCount] = useState(1); // 초기에는 3개만 보여줄 수 있는 state
   const router = useRouter();
+  const [foodImage, setFoodImage] = useState();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const foodimage = queryParams.get("foodimage") || "";
+    setFoodImage(foodimage);
+  }, []);
 
   const { selectedDistance } = useUser();
-  console.log("selectedDistance : ", selectedDistance);
 
   const handlePlacesUpdate = (newPlaces) => {
     setPlaces(newPlaces);
@@ -43,7 +49,7 @@ export default function Page() {
   return (
     <div className={styles.container}>
       <div className={styles.imgWrap}>
-        <div>이미지태그</div>
+        <Image src={foodImage} alt={foodData.title} priority width={359} height={205} />
       </div>
 
       <div className={styles.foodDescContainer}>
@@ -70,19 +76,23 @@ export default function Page() {
 
       <section className={styles.shopContainer}>
         <article className={styles.shopWrap}>
-          {places.slice(0, visibleCount).map((item, idx) => {
-            return (
-              <div className={styles.shopDesc} key={idx}>
-                <h3>{item.place_name}</h3>
-                <div className={styles.text}>
-                  <p>{item.distance}m</p>
-                  <Link className={styles.link} href={`https://map.kakao.com/link/to/${item.place_name},${item.y},${item.x}`}>
-                    매장안내
-                  </Link>
+          {places
+            .slice()
+            .sort((a, b) => a.distance - b.distance)
+            .slice(0, visibleCount)
+            .map((item, idx) => {
+              return (
+                <div className={styles.shopDesc} key={idx}>
+                  <h3>{item.place_name}</h3>
+                  <div className={styles.text}>
+                    <p>{item.distance}m</p>
+                    <Link className={styles.link} href={`https://map.kakao.com/link/to/${item.place_name},${item.y},${item.x}`}>
+                      매장안내
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </article>
         {visibleCount < places.length && (
           <button className={styles.moreBtn} onClick={handleLoadMore}>
@@ -90,6 +100,7 @@ export default function Page() {
           </button>
         )}
       </section>
+      <Footer />
     </div>
   );
 }

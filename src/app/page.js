@@ -3,7 +3,7 @@
 import styles from "./page.module.scss";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 //npm install framer-motion
 //npm install sharp
@@ -12,6 +12,28 @@ import todayeat from "../../public/images/투데잇.png";
 
 export default function App() {
   const router = useRouter();
+
+  const [foodItems, setFoodItems] = useState([]);
+  console.log("foodItems : ", foodItems);
+
+  useEffect(() => {
+    const fetchFoodItems = async () => {
+      try {
+        const response = await fetch("/api/food");
+        const data = await response.json();
+
+        if (data.success) {
+          setFoodItems(data); // 필터링된 음식 정보 저장
+        } else {
+          console.error("Failed to fetch food items");
+        }
+      } catch (error) {
+        console.error("Error fetching food items:", error);
+      }
+    };
+
+    fetchFoodItems();
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {

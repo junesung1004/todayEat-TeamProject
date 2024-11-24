@@ -8,20 +8,28 @@ import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
 import { useSession } from "next-auth/react";
 import { useUser } from "@/context/userContext";
 // import { useRouter } from "next/router";
+import dosirockback from "@/../../public/images/도시락배경이미지.png";
+import dosirock from "@/../../public/images/도시락이미지.png";
+import sal from "@/../../public/images/샐러드이미지.png";
+import salback from "@/../../public/images/샐러드배경.png";
+import cobab from "@/../../public/images/초밥.png";
+import cobabback from "@/../../public/images/초밥배경.png";
+import cabab from "@/../../public/images/케밥.png";
+import cababback from "@/../../public/images/케밥배경.png";
+import bbang from "@/../../public/images/크로아상.png";
+import bbangback from "@/../../public/images/크로아상배경.png";
+import kimch from "@/../../public/images/찌개.png";
+import kimchback from "@/../../public/images/찌개배경.png";
+import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
-  // const router = useRouter();
-  // console.log("router : ", router);
-  // const { login } = router.query;
   const { isLogin, setIsLogin } = useUser();
-  console.log("isLogin : ", isLogin);
-  console.log(window?.location);
+
   useEffect(() => {
     if (window.location.search.includes("true")) {
-      console.log("User is logged in.");
       setIsLogin(true);
     }
-  }, []);
+  }, [setIsLogin]);
 
   const togglePopUp = () => {
     setIsPopUpVisible((prev) => !prev);
@@ -30,13 +38,25 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <section className={styles.title}>
-        <h1>오늘 뭐 먹지 ?</h1>
-        <p>투데잇이</p>
-        <p>골라줄게요</p>
+        <h1>오늘 뭐먹지?</h1>
+        <p>투데잇이 골라줄게요</p>
       </section>
 
       <section className={styles.imageContainer}>
-        <div className={styles.imgWrap}>{/* <Image src={}/> */}</div>
+        <div className={styles.imgWrap}>
+          <Image className={styles.dosirock} src={dosirockback} alt="도시락 배경 로고" priority width={93} height={75} />
+          <Image className={styles.dosirockback} src={dosirock} alt="도시락 로고" priority width={48} height={58} />
+          <Image className={styles.sal} src={sal} alt="샐러드 로고" priority width={48} height={58} />
+          <Image className={styles.salback} src={salback} alt="샐러드 배경 로고" priority width={93} height={75} />
+          <Image className={styles.cobab} src={cobab} alt="초밥 로고" priority width={36} height={58} />
+          <Image className={styles.cobabback} src={cobabback} alt="초밥 배경 로고" priority width={78} height={72} />
+          <Image className={styles.cabab} src={cabab} alt="초밥 로고" priority width={40} height={58} />
+          <Image className={styles.cababback} src={cababback} alt="초밥 배경 로고" priority width={88} height={72} />
+          <Image className={styles.bbang} src={bbang} alt="크로아상 로고" priority width={40} height={58} />
+          <Image className={styles.bbangback} src={bbangback} alt="크로아상 배경 로고" priority width={88} height={72} />
+          <Image className={styles.kimch} src={kimch} alt="찌개 로고" priority width={40} height={58} />
+          <Image className={styles.kimchback} src={kimchback} alt="찌개 배경 로고" priority width={88} height={72} />
+        </div>
         <div className={styles.btnWrap}>
           <Link href={"/customization"} className={styles.btn}>
             <svg className={styles.icon} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -51,6 +71,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

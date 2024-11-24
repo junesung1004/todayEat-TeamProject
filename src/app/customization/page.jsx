@@ -22,7 +22,7 @@ export default function Page() {
     tang: false,
     diet: false,
     asia: false,
-    meet: false,
+    bbq: false,
     night: false,
   });
 
@@ -82,7 +82,7 @@ export default function Page() {
         tang: checkedChange,
         diet: checkedChange,
         asia: checkedChange,
-        meet: checkedChange,
+        bbq: checkedChange,
         night: checkedChange,
       });
     } else {
@@ -205,7 +205,7 @@ export default function Page() {
                 { id: "tang", label: "찜, 탕, 찌개" },
                 { id: "diet", label: "다이어트식" },
                 { id: "asia", label: "아시안" },
-                { id: "meet", label: "고기, 구이" },
+                { id: "bbq", label: "고기, 구이" },
                 { id: "night", label: "야식" },
               ].map((item) => (
                 <div
@@ -229,9 +229,9 @@ export default function Page() {
             <div className={styles.categoryWrap}>
               {[
                 { id: "1000000", label: "전체" },
-                { id: "8000", label: "8000원 이하" },
-                { id: "10000", label: "10000원 이하" },
-                { id: "15000", label: "15000원 이하" },
+                { id: "8000", label: "부담없이 먹기" },
+                { id: "10000", label: "딱 좋은 한끼" },
+                { id: "15000", label: "특별한 날" },
               ].map((item) => (
                 <div
                   key={item.id}

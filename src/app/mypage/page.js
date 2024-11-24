@@ -6,22 +6,26 @@ import { useRouter } from "next/navigation";
 import { getSession, signOut } from "next-auth/react";
 import LoginPopUp from "@/components/LoginPopUp/LoginPopUp";
 import Link from "next/link";
-import Footer from "@/components/Footer/Footer";
 import { useUser } from "@/context/userContext";
 import logo from "@/../../public/images/logo.png";
 import exit from "@/../../public/images/exit.png";
 import pen from "@/../../public/images/pen.png";
 import Image from "next/image";
+import Footer from "@/components/Footer/Footer";
+import food1 from "@/../../public/new/만두.jpg";
 
 export default function Page() {
-  const mock1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-  const mock2 = [1, 2, 3, 4, 5];
   const router = useRouter();
 
   const [isLikeChecked, setIsLikeChecked] = useState(true);
   const [isDisLikeChecked, setIsDisLikeChecked] = useState(false);
   const [user, setUser] = useState(null);
   const { isLogin, setIsLogin } = useUser();
+
+  const [likedFoods, setLikedFoods] = useState([]);
+
+  const [disLikedFoods, setDisLikedFoods] = useState([]);
+  console.log("likedFoods", likedFoods);
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -31,7 +35,43 @@ export default function Page() {
     fetchSession();
   }, []);
 
-  //console.log(user?.name);
+  //좋아하는 음식 데이터베이스로부터 가져오는 코드
+  useEffect(() => {
+    const getFetchData = async () => {
+      if (!user) return; // 사용자 세션이 없으면 반환
+
+      try {
+        const response = await fetch("/api/likeFood"); // 좋아요 음식 API 호출
+        if (!response.ok) {
+          throw new Error("서버 오류");
+        }
+        const data = await response.json();
+        setLikedFoods(data.data); // 받은 데이터로 상태 업데이트
+      } catch (error) {
+        console.error("좋아요 음식 목록 가져오기 에러 :", error);
+      }
+    };
+    getFetchData();
+  }, [user]); // user가 변경될 때마다 데이터 가져오기
+
+  //싫어하는 음식 데이터베이스로부터 가져오는 코드
+  useEffect(() => {
+    const getFetchData = async () => {
+      if (!user) return; // 사용자 세션이 없으면 반환
+
+      try {
+        const response = await fetch("/api/disLikeFood"); // 좋아요 음식 API 호출
+        if (!response.ok) {
+          throw new Error("서버 오류");
+        }
+        const data = await response.json();
+        setDisLikedFoods(data.data); // 받은 데이터로 상태 업데이트
+      } catch (error) {
+        console.error("좋아요 음식 목록 가져오기 에러 :", error);
+      }
+    };
+    getFetchData();
+  }, [user]); // user가 변경될 때마다 데이터 가져오기
 
   const clickHomeMove = async () => {
     try {
@@ -60,49 +100,51 @@ export default function Page() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.userInfoContainer}>
-        <Image src={logo} alt="로고이미지" priority width={43} height={34} />
-        <h2>
-          <span className={styles.userName}>{user?.name}</span>님
-        </h2>
-        <h2>맛있는 식사하셨나요?</h2>
-      </div>
+      <div className={styles.userInfoWrap}>
+        <div className={styles.userInfoContainer}>
+          <Image src={logo} alt="로고이미지" priority width={43} height={34} />
+          <h2>
+            <span className={styles.userName}>{user?.name}</span>님
+          </h2>
+          <h2>맛있는 식사하셨나요?</h2>
+        </div>
 
-      <div className={styles.btnContainer}>
-        <div className={styles.logOutBtnWrap}>
-          <Image src={exit} alt="로그아웃 로고" width={16} height={16} priority />
-          <button onClick={() => clickHomeMove()} className={styles.logOutBtn}>
-            로그아웃
-          </button>
+        <div className={styles.btnContainer}>
+          <div className={styles.logOutBtnWrap}>
+            <Image src={exit} alt="로그아웃 로고" width={16} height={16} priority />
+            <button onClick={() => clickHomeMove()} className={styles.logOutBtn}>
+              로그아웃
+            </button>
+          </div>
         </div>
-      </div>
 
-      <article className={styles.likeDisLikeContainer}>
-        <div onClick={() => clickLikeBtn()} className={`${styles.likeWrap} ${isLikeChecked ? styles.likeChecked : ""}`}>
-          좋아요<span className={styles.like}>13</span>
-        </div>
-        <div onClick={() => clickDisLikeBtn()} className={`${styles.disLikeWrap} ${isDisLikeChecked ? styles.disLikeChecked : ""}`}>
-          안볼래요<span className={styles.disLike}>5</span>
-        </div>
-      </article>
+        <article className={styles.likeDisLikeContainer}>
+          <div onClick={() => clickLikeBtn()} className={`${styles.likeWrap} ${isLikeChecked ? styles.likeChecked : ""}`}>
+            좋아요<span className={styles.like}>{likedFoods.length}</span>
+          </div>
+          <div onClick={() => clickDisLikeBtn()} className={`${styles.disLikeWrap} ${isDisLikeChecked ? styles.disLikeChecked : ""}`}>
+            안볼래요<span className={styles.disLike}>{disLikedFoods.length}</span>
+          </div>
+        </article>
+      </div>
 
       <section className={styles.foodsImgContainer}>
         {isLikeChecked &&
-          mock1.map((el, idx) => {
+          likedFoods.map((food, idx) => {
             return (
               <article className={styles.imgWrap} key={idx}>
-                <div>이미지</div>
-                <p>음식이름</p>
+                <Image className={styles.img} src={food.image} alt="좋아요 음식" priority />
+                <p>{food.name}</p>
               </article>
             );
           })}
 
         {isDisLikeChecked &&
-          mock2.map((el, idx) => {
+          disLikedFoods.map((food, idx) => {
             return (
               <article className={styles.imgWrap} key={idx}>
-                <div>이미지</div>
-                <p>음식이름</p>
+                <Image className={styles.img} src={food.image} alt="싫어요 음식" priority />
+                <p>{food.name}</p>
               </article>
             );
           })}
@@ -111,6 +153,7 @@ export default function Page() {
         <Image src={pen} alt="수정로고" priority width={20} height={20} />
         <button className={styles.editBtn}>편집</button>
       </div>
+      <Footer />
     </div>
   );
 }
