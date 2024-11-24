@@ -37,29 +37,45 @@
 ## 기능 목록
 
 - **공통 header, footer 컴포넌트**
-  ![image.png](./public/git/image2.png)
+
   - 헤더에 메인 로고를 클릭하면 메인 페이지로 이동한다.
   - 헤더에 햄버거 버튼을 클릭하면 음식 카테고리 페이지로 이동한다.
   - 푸터에 집 모양 로고를 클릭하면 메인 페이지로 이동한다.
   - 푸터에 사람 모양 로고를 클릭하면 마이페이지로 이동한다.
+    <br />
+    ![image.png](./public/git/image2.png)
+    <br />
+
 - **스플래시 페이지**
-  ![image.png](./public/git/image3.png)
+
   - 웹 사이트에 접속을 하면 첫 로딩페이지 화면이 나오며 2초 후 home 화면으로 진입한다.
+    ![image.png](./public/git/image3.png)
+    <br />
+
 - **시작 페이지**
-  ![image.png](./public/git/image4.png)
+
   - 스플래시 페이지에서 2초 후 진입하는 첫 시작페이지
   - swiper.js를 통해 서비스 이용 방법을 슬라이드 형식으로 알려준다.
   - 시작하는 방법은 비로그인/소셜로그인을 통하여 시작할 수 있다.
+    ![image.png](./public/git/image4.png)
+    <br />
+
 - **홈 페이지**
-  ![image.png](./public/git/image5.png)
+
   - 시작 페이지에서 로그인 & 비로그인으로 시작을 하면 진입하는 홈 화면 페이지
   - 맞춤설정 버튼을 클릭하면 음식 카테고리 설정 페이지로 이동한다
+    ![image.png](./public/git/image5.png)
+    <br />
+
 - **카테고리 설정 페이지**
-  ![image.png](./public/git/image6.png)
+
   - 홈 페이지 화면에서 맞춤 설정 버튼을 누르면 진입하는 카테고리 설정 화면
   - 카테고리를 크게 음식 , 가격대, 매장거리로 총 3가지로 나누어 개발
   - 총 3개의 카테고리를 선택해야지 적용하기 버튼이 활성
   - 카테고리를 잘못 선택했을 때 초기화 버튼을 누르면 카테고리가 초기화된다
+    ![image.png](./public/git/image6.png)
+    <br />
+
 - **음식 선택 페이지**
   ![image.png](./public/git/image7.png)
   ![image.png](./public/git/image8.png)
@@ -75,6 +91,7 @@
   - 점 3개 아이콘을 누르면 싫어요를 등록할 수 있는 팝업창이 나오면서 좋아요와 마찬가지로
     로그인이 된 상황에서만 서비스를 이용 가능하게 구현
     ![image.png](./public/git/image9.png)
+    <br />
 - **매장 선택 페이지**
   ![image.png](./public/git/image10.png)
   - 음식 선택 페이지에서 음식을 선택 후 진입하는 화면
@@ -85,6 +102,7 @@
     ![image.png](./public/git/image11.png)
   - 매장안내를 누르면 카카오 길찾기 app이 연동되어 현재 내위치 기준으로 자동으로 길찾기
     기능이 가능하다.
+    <br />
 - **마이 페이지**
   ![image.png](./public/git/image12.png)
   - 위 마이페이지는 로그인을 해야지만 가능한 서비스입니다.
