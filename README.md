@@ -1,11 +1,11 @@
 # 세번째 프로젝트
 
-<h1>프로젝트 제목: 투데잇 (today + eat)</h1>
-<h3>기술스택: CSS(SASS & SCSS), GridFS, context, mongodb, next-auth, next.js</h3>
-<h3>작업기간: 2024년 9월 1일 → 2024년 9월 25일</h3>
-<h3>기여도: 100%</h3>
-<h3>깃허브: https://github.com/junesung1004/todayEat-TeamProject</h3>
-<h3>배포 사이트: https://todayeatfoods.netlify.app/</h3>
+<p>■ 프로젝트 제목: 투데잇 (today + eat)</p>
+<p>■ 기술스택: CSS(SASS & SCSS), GridFS, context, mongodb, next-auth, next.js</p>
+<p>■ 작업기간: 2024년 9월 1일 → 2024년 9월 25일</p>
+<p>■ 기여도: 100%</p>
+<p>■ 깃허브: https://github.com/junesung1004/todayEat-TeamProject</p>
+<p>■ 배포 사이트: https://todayeatfoods.netlify.app/</p>
 
 ![image.png](./public/git/image.png)
 
