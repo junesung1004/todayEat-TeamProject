@@ -1,4 +1,4 @@
-# 세번째 프로젝트
+<img width="308" alt="image 1" src="https://github.com/user-attachments/assets/04f1d82c-5816-4f59-bf9c-5fadc7dc834b"># 세번째 프로젝트
 
 프로젝트 제목: 투데잇 (today + eat)
 기술스택: CSS(SASS & SCSS), GridFS, context, mongodb, next-auth, next.js
@@ -7,7 +7,8 @@
 깃허브: https://github.com/junesung1004/todayEat-TeamProject
 배포 사이트: https://todayeatfoods.netlify.app/
 
-![image.png](image.png)
+![image.png](![Uploading image.png…]()
+)
 
 ---
 
@@ -28,7 +29,8 @@
 
 ■**페르소나**
 
-![image.png](image%201.png)
+![image.png](<img width="308" alt="image 1" src="https://github.com/user-attachments/assets/7ab0eb8f-feef-410c-9e73-2be66792f0cf">
+)
 
 💡**박준성** :  점심시간에 메뉴를 고르라고 했는데, 도대체 뭘 선택해야 하지? 왜 항상 나한테 시키는 거          야… 매장은 또 어떻게 찾지? 으아……….
 
@@ -38,7 +40,8 @@
 
 - **공통 header, footer 컴포넌트**
     
-    ![image.png](image%202.png)
+    ![image.png](<img width="242" alt="image 2" src="https://github.com/user-attachments/assets/823637ac-c445-486f-9f9c-0febb923958e">
+)
     
     - 헤더에 메인 로고를 클릭하면 메인 페이지로 이동한다.
     - 헤더에 햄버거 버튼을 클릭하면 음식 카테고리 페이지로 이동한다.
@@ -46,25 +49,29 @@
     - 푸터에 사람 모양 로고를 클릭하면 마이페이지로 이동한다.
 - **스플래시 페이지**
     
-    ![image.png](image%203.png)
+    ![image.png](<img width="238" alt="image 3" src="https://github.com/user-attachments/assets/f7021148-b21b-4f88-b7ab-4f6ea5ebf493">
+)
     
     - 웹 사이트에 접속을 하면 첫 로딩페이지 화면이 나오며 2초 후 home 화면으로 진입한다.
 - **시작 페이지**
     
-    ![image.png](image%204.png)
+    ![image.png](<img width="691" alt="image 4" src="https://github.com/user-attachments/assets/28f92240-73e2-4fbe-b882-6d9bccc9dd96">
+)
     
     - 스플래시 페이지에서 2초 후 진입하는 첫 시작페이지
     - swiper.js를 통해 서비스 이용 방법을 슬라이드 형식으로 알려준다.
     - 시작하는 방법은 비로그인/소셜로그인을 통하여 시작할 수 있다.
 - **홈 페이지**
     
-    ![image.png](image%205.png)
+    ![image.png](<img width="220" alt="image 5" src="https://github.com/user-attachments/assets/42391d6c-fa24-4332-ad10-951ddf62ea47">
+)
     
     - 시작 페이지에서 로그인 & 비로그인으로 시작을 하면 진입하는 홈 화면 페이지
     - 맞춤설정 버튼을 클릭하면 음식 카테고리 설정 페이지로 이동한다
 - **카테고리 설정 페이지**
     
-    ![image.png](image%206.png)
+    ![image.png](<img width="221" alt="image 6" src="https://github.com/user-attachments/assets/c93cda55-7e92-4a6e-a4c7-661543368c7e">
+)
     
     - 홈 페이지 화면에서 맞춤 설정 버튼을 누르면 진입하는 카테고리 설정 화면
     - 카테고리를 크게 음식 , 가격대, 매장거리로 총 3가지로 나누어 개발
@@ -73,9 +80,11 @@
 - **음식 선택 페이지**
     
     
-    ![image.png](image%207.png)
+    ![image.png](<img width="260" alt="image 7" src="https://github.com/user-attachments/assets/8d2e0f86-ffd8-4380-93e2-3ab14f5b57d9">
+)
     
-    ![image.png](image%208.png)
+    ![image.png](<img width="200" alt="image 8" src="https://github.com/user-attachments/assets/940d1551-be8c-438a-8416-b803bbeea60e">
+)
     
     - 카테고리 설정 페이지에서 적용하기 버튼을 누 후 진입하는 화면
     - 초기에는 코치마크로 서비스를 어떻게 이용하는지 예시로 보여준다.
@@ -89,11 +98,13 @@
     - 점 3개 아이콘을 누르면 싫어요를 등록할 수 있는 팝업창이 나오면서 좋아요와 마찬가지로
     로그인이 된 상황에서만 서비스를 이용 가능하게 구현
         
-        ![image.png](image%209.png)
+        ![image.png](<img width="227" alt="image 9" src="https://github.com/user-attachments/assets/8fe17f0f-aef3-44b3-8d53-706f67bc30d3">
+)
         
 - **매장 선택 페이지**
     
-    ![image.png](image%2010.png)
+    ![image.png](<img width="249" alt="image 10" src="https://github.com/user-attachments/assets/410dd3a1-8b91-466b-96af-4888c88d7eb7">
+)
     
     - 음식 선택 페이지에서 음식을 선택 후 진입하는 화면
     - 음식 이름을 활용하여 키워드로 지정 후 카카오 지도 api와 연결하여
@@ -101,13 +112,15 @@
     - 지도 콘테이너에 마커를 하나 클릭하면 윈포윈도우 기능이 활성화 되서
     매장 정보를 확인 할 수 있다
         
-        ![image.png](image%2011.png)
+        ![image.png](<img width="136" alt="image 11" src="https://github.com/user-attachments/assets/5dc75bdb-2089-4a14-87aa-d601884d6c1f">
+)
         
     - 매장안내를 누르면 카카오 길찾기 app이 연동되어 현재 내위치 기준으로 자동으로 길찾기 
     기능이 가능하다.
 - **마이 페이지**
     
-    ![image.png](image%2012.png)
+    ![image.png](<img width="680" alt="image 12" src="https://github.com/user-attachments/assets/38bcd1e5-d595-4eed-b13a-c15574c14685">
+)
     
     - 위 마이페이지는 로그인을 해야지만 가능한 서비스입니다.
     - 좋아요 & 안볼래요 탭을 하나씩 활성화 시켜 좋아요 탭이면 좋아요 음식들, 
@@ -115,7 +128,8 @@
     - 편집을 누르면 카드 아이템에 x아이콘이 활성화 되고 x버튼을 누른 후 완료 버튼을 누르면
     해당 음식이 사라지고 데이터베이스에 음식이 삭제된다.
         
-        ![image.png](image%2013.png)
+        ![image.png](<img width="149" alt="image 13" src="https://github.com/user-attachments/assets/669ae02a-c0eb-445b-9358-3a3b5d0c1e9f">
+)
         
     - 마이 페이지에서 위 표시 부  이름을 활용한 방식은 context api를 활용하여 전역에서 
     유저 정보를 가지고 활용할 수 있게 구현
@@ -178,16 +192,19 @@
 - **협업 툴**
     - Notion : 프로젝트 기간, 사용 기술 스택, 참고 문서, 업무 진행 사항, 회의록
         
-        ![image.png](image%2014.png)
+        ![image.png](<img width="743" alt="image 14" src="https://github.com/user-attachments/assets/898ba721-185b-4f78-bbd5-54d1a8e67097">
+)
         
     - Discord : 음성 및 채팅으로 의견 제시 및 문제 해결
         
-        ![image.png](image%2015.png)
+        ![image.png](<img width="559" alt="image 15" src="https://github.com/user-attachments/assets/2bd6d3d1-6649-481e-9931-4c1a493979e9">
+)
         
     - GitHub : Code Repository
     - Pigma : 기획, IA, 와이어프레임, 플로우차트 등 협업 툴 사용
         
-        ![image.png](image%2016.png)
+        ![image.png](<img width="575" alt="image 16" src="https://github.com/user-attachments/assets/ab60dae5-af08-4374-bbc3-4a96c8f6608a">
+)
         
 
 ### 컨벤션
@@ -218,7 +235,8 @@
 master - develop - feature-f-js
 ```
 
-![image.png](image%2017.png)
+![image.png](<img width="514" alt="image 17" src="https://github.com/user-attachments/assets/32793e53-9b28-4b1e-8d4e-5f576276fb4c">
+)
 
 ### 기여 방법
 
