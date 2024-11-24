@@ -7,7 +7,7 @@
 깃허브: https://github.com/junesung1004/todayEat-TeamProject
 배포 사이트: https://todayeatfoods.netlify.app/
 
-![image.png](image.png)
+![image.png](./public/git/image.png)
 
 ---
 
