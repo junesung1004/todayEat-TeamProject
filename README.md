@@ -82,7 +82,7 @@
 
 **문제.2**
 
-음식 이미지를 데이터베이스에 저장이 되어야 하는데 mongoDB 자체에는 Storage라는 기능이 따로 없어 이미지 파일을 저장할 곳을 찾지 못하는 문제가 발생생
+음식 이미지를 데이터베이스에 저장이 되어야 하는데 mongoDB 자체에는 Storage라는 기능이 따로 없어 이미지 파일을 저장할 곳을 찾지 못하는 문제가 발생
 
 **해결 방법**
 
@@ -93,6 +93,7 @@
 - Next.js 프레임워크의 SSR(Server-Side Rendering)을 활용함으로써 초기 로딩 속도가 향상되고, 검색엔진 최적화(SEO)에도 각각 페이지 별 동적으로 SEO의 이점을 가질 수 있는 점을 배웠습니다.
 - 프로젝트에서 필요한 부분에는 CSR을 적용하고, 다른 부분에는 SSR을 적용하는 전략을 사용하여, 페이지 로딩 시간과 SEO를 최적화했습니다. 이 방식은 성능과 사용자 경험을 동시에 고려할 수 있게 해주었습니다.
 - 카카오 지도 API를 사용할 때 비동기 처리에 대해 깊이 이해할 수 있었습니다. defer와 onload 메서드를 통해 스크립트 로딩 순서와 실행 시점을 조절하는 방법을 익히며, 비동기 처리가 실제 개발에서 어떻게 중요한지 체감할 수 있었습니다.
+- <img> 태그를 활용하여 이미지를 설정했었는데, 데이터베이스로부터 불러오고 이러한 과정에서 어떻게하면 조금 더 빨리 불러올 수 없을까? 하는 도중 NEXT/IMAGE 컴포넌트를 사용하면 자동으로 최적화 해주고 각 상황에 맞게 이미지 사이즈를 조절해주어 이러한 과정을 통해 이미지 불러오는 로딩속도를 1~2초 단축할 수 있었습니다.
 
 ## 어려웠던 점
 
@@ -101,6 +102,10 @@
 
 ## 프로젝트 이미지
 
-| ![첫 화면](https://github.com/user-attachments/assets/698ccc3e-774c-4564-aa38-674ae85b316c)  | ![게임진행화면](https://github.com/user-attachments/assets/1a9883d3-7d0c-4a92-a993-06303d3cd268) |
-| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| ![전투화면](https://github.com/user-attachments/assets/830a9e71-2028-4014-b19d-93f5ab672cbf) | ![보스 출현](https://github.com/user-attachments/assets/493b9246-4581-47f7-bba7-b55ca5d8f086)    |
+| ![스플래쉬 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/splash.png)      | ![첫 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/main.png)            |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| ![카테고리 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/filter.png)      | ![코치마크 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/cochimark.png) |
+| ----------------------------------------------------------------------------------------------------------      | --------------------------------------------------------------------------------------------------            |
+| ![음식 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/menuitem.png) | ![음식점 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/shop.png) |
+| ----------------------------------------------------------------------------------------------------------      | --------------------------------------------------------------------------------------------------            |
+| ![음식 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/mypage.png)   |
