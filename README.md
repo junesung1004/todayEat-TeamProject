@@ -102,10 +102,18 @@
 
 ## 프로젝트 이미지
 
-| ![스플래쉬 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/splash.png)      | ![첫 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/main.png)            |
+<!-- | ![스플래쉬 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/splash.png)      | ![첫 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/main.png)            |
 | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | ![카테고리 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/filter.png)      | ![코치마크 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/cochimark.png) |
 | ----------------------------------------------------------------------------------------------------------      | --------------------------------------------------------------------------------------------------            |
 | ![음식 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/menuitem.png) | ![음식점 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/shop.png) |
 | ----------------------------------------------------------------------------------------------------------      | --------------------------------------------------------------------------------------------------            |
-| ![음식 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/mypage.png)   |
+| ![음식 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/mypage.png)   | -->
+
+| <img src="https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/splash.png" width="300"/>   | <img src="https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/main.png" width="300"/>      |
+| ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| <img src="https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/filter.png" width="300"/>   | <img src="https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/cochimark.png" width="300"/> |
+| ----------------------------------------------------------------------------------------------------------          | --------------------------------------------------------------------------------------------------                   |
+| <img src="https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/menuitem.png" width="300"/> | <img src="https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/shop.png" width="300"/>      |
+| ----------------------------------------------------------------------------------------------------------          | --------------------------------------------------------------------------------------------------                   |
+| <img src="https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/mypage.png" width="300"/>   |
