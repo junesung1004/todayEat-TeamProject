@@ -31,7 +31,7 @@
 <div>
   <img src="https://img.shields.io/badge/next-000000?style=for-the-badge&logo=next.js&logoColor=white">
   <br />
-  <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
+  <img src="https://img.shields.io/badge/context-764ABC?style=for-the-badge&logo=context&logoColor=white">
   <img src="https://img.shields.io/badge/react router-CA4245?style=for-the-badge&logo=react-router&logoColor=white">
 </div>
 <br />
