@@ -13,8 +13,8 @@
 - 비로그인 / 로그인으로 서비스를 이용할 수 있게 구현
 - 음식 종류 카테고리, 가격대, 거리순으로 조절하여 더욱 디테일하게 음식점 검색이 가능
 - 좋아하는 음식 혹은 싫어하는 음식을 지정하여 추 후에 한눈에 알기 쉽게 마이페이지에서 확인 가능
-- 자기 위치를 기반으로 카카오 지도 api를 활용해 주변 음식점을 확인할 수 있도록 구현현
-- 좋아하는 음식을 선택 후 원하는 음식점을 선택을 하면 카카오 길찾기 앱이 연동되도록 기능 구현현
+- 자기 위치를 기반으로 카카오 지도 api를 활용해 주변 음식점을 확인할 수 있도록 구현
+- 좋아하는 음식을 선택 후 원하는 음식점을 선택을 하면 카카오 길찾기 앱이 연동되도록 기능 구현
 
 ## 기술 스택 (Skill)
 
@@ -102,10 +102,10 @@
 
 ## 프로젝트 이미지
 
-| ![스플래쉬 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/splash.png)      | ![첫 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/main.png)            |
-| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| ![카테고리 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/filter.png)      | ![코치마크 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/cochimark.png) |
-| ----------------------------------------------------------------------------------------------------------      | --------------------------------------------------------------------------------------------------            |
-| ![음식 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/menuitem.png) | ![음식점 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/shop.png) |
-| ----------------------------------------------------------------------------------------------------------      | --------------------------------------------------------------------------------------------------            |
-| ![음식 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/mypage.png)   |
+| ![스플래쉬 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/splash.png)      | ![첫 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/main.png)              |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| ![카테고리 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/filter.png)      | ![코치마크 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/cochimark.png)   |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| ![음식 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/menuitem.png) | ![음식점 선택택 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/shop.png)   |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| ![마이페이지 화면](https://github.com/junesung1004/todayEat-TeamProject/blob/develop/public/view/mypage.png)    |
